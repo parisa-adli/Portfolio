@@ -16,7 +16,7 @@
 
 ## 1. Who this is for
 
-- **Owner:** Parisa Adli — Frontend Developer (React / Next.js), works freelance with clients.
+- **Owner:** Parisa Adli — Full-Stack Developer | React · Next.js · TypeScript · Node.js · Express, works freelance with clients.
 - **Audience:** potential clients and hiring teams. They should leave thinking: *"technical, precise, has taste, ships real products."*
 - **Positioning line (draft, refine from LinkedIn):** "Frontend developer building fast, polished web apps with React & Next.js."
 - **Links:**
