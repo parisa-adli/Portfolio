@@ -1,5 +1,6 @@
 // Sources: repo READMEs, docs and package.json files (content/raw/github.json, fetched 2026-11-03) + docs/cv.pdf.
-// No repo has a homepage, a deployment record, or a live link in its README, so every liveUrl is null.
+// No repo has a live link yet, so every liveUrl is null. Owner will deploy the 3 featured projects as seeded demos before launch.
+// inventory-manager: repo is being renamed from "-inventory-app-ai" (owner, 2026-11-03); GitHub redirects the old URL.
 
 export type Project = {
   slug: string;
@@ -25,7 +26,7 @@ const gh = (repo: string) => `https://github.com/parisa-adli/${repo}`;
 export const projects: Project[] = [
   {
     slug: "inventory-manager",
-    repo: "-inventory-app-ai",
+    repo: "inventory-manager",
     title: "Inventory Manager",
     tagline: "A stock ledger that can't drift.",
     description:
@@ -40,7 +41,7 @@ export const projects: Project[] = [
     status: "source only",
     role: "Solo — design, client, server and tests",
     liveUrl: null,
-    sourceUrl: gh("-inventory-app-ai"),
+    sourceUrl: gh("inventory-manager"),
     challenge: "Stock quantities silently drift from what actually happened.",
     solution:
       "Quantity is derived from an append-only movement ledger written in the same operation, with an admin reconciliation check.",
@@ -113,8 +114,9 @@ export const projects: Project[] = [
     role: "Solo — frontend",
     liveUrl: null,
     sourceUrl: gh("Next.js-blog-app"),
-    challenge: "{{TODO: challenge}}",
-    solution: "{{TODO: solution}}",
+    challenge: "Blog posts need to rank in search, but the admin side is a heavy, interactive app.",
+    solution:
+      "Public pages are server-rendered with dynamic routes for SEO; the admin dashboard runs on React Query with shared hooks and paginated tables.",
     signals: { commits: 81, tests: null, ci: false },
     featured: false,
   },
@@ -139,28 +141,6 @@ export const projects: Project[] = [
     challenge: "Search results you can't share or reload are useless.",
     solution: "All search, filter and sort state lives in the URL, so any result page is a link.",
     signals: { commits: 35, tests: "Node test runner (unit)", ci: false },
-    featured: false,
-  },
-  {
-    slug: "rick-and-morty",
-    repo: "React-rick-and-morty-app",
-    title: "Rick and Morty Explorer",
-    tagline: "The multiverse, searchable.",
-    description: "Browse and search characters, episodes and locations from the Rick and Morty API, on mobile and desktop.",
-    features: [
-      "Character browser with detail view",
-      "Search across characters, episodes and locations",
-      "Responsive layout for mobile and desktop",
-    ],
-    stack: ["React 18", "Axios", "Heroicons"],
-    category: "WEB APP",
-    status: "source only",
-    role: "Solo — frontend",
-    liveUrl: null,
-    sourceUrl: gh("React-rick-and-morty-app"),
-    challenge: "{{TODO: challenge}}",
-    solution: "{{TODO: solution}}",
-    signals: { commits: 22, tests: null, ci: false },
     featured: false,
   },
 ];

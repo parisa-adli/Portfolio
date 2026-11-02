@@ -36,7 +36,7 @@ Owner inputs: `docs/cv.pdf` is the LinkedIn export and is git-ignored, so never 
 ## Motion (§4.4)
 
 - Heading reveals: split by line or word, `y: 100% → 0`, stagger 0.04, 0.8s `--ease-out`, once per element.
-- Micro-interactions take 200–400ms; reveals take 600–900ms. Only marquees, the caret and the status dot loop.
+- Micro-interactions take 200–400ms; reveals take 600–900ms. Only marquees and the caret loop.
 - Per-frame effects use one rAF loop writing CSS variables, never React state. Animate `scaleX`/`scaleY`, never `width`/`height`.
 - `prefers-reduced-motion`: opacity fades only, no Lenis, no custom cursor or spotlight.
 

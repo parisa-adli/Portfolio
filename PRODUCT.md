@@ -39,8 +39,8 @@ Three prototypes (A Editor, B Mechanical, C Editorial) share the same content an
 
 - All content lives in typed files in `/content` (`profile.ts`, `projects.ts`, `skills.ts`, `experience.ts`). Raw GitHub data is in `/content/raw`.
 - Never invent content, metrics or links. Use `{{TODO: ...}}` placeholders and log each one in `CONTENT_GAPS.md`.
-- **Open decision: location and availability.** The owner has not cleared "available for freelance" or "Tehran, Iran (UTC+3:30)" for public use. Neither may appear on the site until confirmed, and that includes the hero eyebrow and the footer clock DESIGN.md calls for.
-- Open: Instagram link, spoken languages, years of experience, projects-shipped count and live URLs. See `CONTENT_GAPS.md`.
+- **Decided 2026-11-03:** location, timezone, availability, spoken languages, certifications, years of experience and stat counters stay off the site. Instagram is `https://www.instagram.com/parisa.adli.dev`. Work experience: none; the Experience section is a git log of independent projects.
+- Open: live demo URLs and screenshots. See `CONTENT_GAPS.md`.
 - Performance and quality gates are in `docs/DESIGN.md` §9.
 
 ## Brand Commitments

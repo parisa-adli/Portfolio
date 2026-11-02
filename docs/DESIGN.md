@@ -18,11 +18,12 @@
 
 - **Owner:** Parisa Adli — Full-Stack Developer | React · Next.js · TypeScript · Node.js · Express, works freelance with clients.
 - **Audience:** potential clients and hiring teams. They should leave thinking: *"technical, precise, has taste, ships real products."*
-- **Positioning line (draft, refine from LinkedIn):** "Frontend developer building fast, polished web apps with React & Next.js."
+- **Positioning line (confirmed 2026-11-03):** "Full-stack developer building polished, tested products — React and Next.js up front, Node behind it."
 - **Links:**
   - GitHub: https://github.com/parisa-adli
   - LinkedIn: https://www.linkedin.com/in/parisa-adli
-  - Instagram: https://instagram.com/parisa__ad (from GitHub README — confirm with owner before including)
+  - Instagram: https://www.instagram.com/parisa.adli.dev (confirmed; the personal `parisa__ad` account is not used)
+- **Not on the site (owner decision 2026-11-03):** location, timezone/clock, availability, spoken languages, certifications, phone number, years of experience and any stat counters.
 
 ---
 
@@ -40,7 +41,7 @@ Known facts (verified Nov 2026, re-check):
   3. `React-freelancer-app` — freelancer marketplace app, React
   4. `React-Booking-Hotel_App` — hotel booking app, React
   5. `React-rick-and-morty-app` — Rick & Morty API explorer, React
-  6. `-inventory-app-ai` — TypeScript full-stack (client/server/shared), Playwright E2E tests, GitHub Actions CI, email auth, AI-assisted dev workflow (CLAUDE.md). 68+ commits. **Most technically mature — feature it first.**
+  6. `-inventory-app-ai` (being renamed to `inventory-manager`) — TypeScript full-stack (client/server/shared), Playwright E2E tests, GitHub Actions CI, email auth, AI-assisted dev workflow (CLAUDE.md). 68+ commits. **Most technically mature — feature it first.**
 
 For each project, derive from README + code: one-line pitch, 3 key features, stack, role, live URL (check repo `homepage`, README, `netlify.toml`/Vercel), and a "challenge → solution" sentence. Don't invent metrics; if none exist, use honest signals (commit count, test coverage, CI, Lighthouse score you measure yourself on the live URL).
 
@@ -80,8 +81,8 @@ spacing scale: 4 8 12 16 24 32 48 64 96 128 160
 ### 3.2 IDE-inspired motifs (use sparingly, max 1–2 per section)
 - Section headers as file tabs / breadcrumbs: `01 — about.tsx`, `~/parisa/projects`
 - Line numbers in a faint gutter beside the About text
-- Status bar-style footer (branch `main`, local time Tehran, "● available for freelance")
-- `⌘K` command palette for navigation (sections, copy email, open GitHub/LinkedIn, switch theme)
+- Status bar-style footer (branch `main`, built-with, copyright; no clock, location or availability)
+- `⌘K` command palette for navigation (sections, copy email, open GitHub/LinkedIn/Instagram). "Switch prototype A/B/C" appears in dev only; there is no light theme.
 - Blinking caret in the hero tagline; syntax-colored tokens in one code snippet
 
 ---
@@ -108,7 +109,7 @@ spacing scale: 4 8 12 16 24 32 48 64 96 128 160
 
 ### 4.4 Motion rules (GSAP + ScrollTrigger + Lenis for smooth scroll)
 - Section reveals: headings split by line/word (SplitText or custom), `y: 100% → 0`, stagger 0.04, 0.8s `--ease-out`. Once per element.
-- Durations 200–400ms for micro-interactions, 600–900ms for reveals. Nothing loops except marquees, caret, and status dot.
+- Durations 200–400ms for micro-interactions, 600–900ms for reveals. Nothing loops except marquees and the caret (the status dot was removed).
 - Everything respects `prefers-reduced-motion` (fall back to simple opacity fades, no Lenis).
 
 ---
@@ -117,25 +118,26 @@ spacing scale: 4 8 12 16 24 32 48 64 96 128 160
 
 ### 5.1 Hero — interactive keyboard (ref: aayushbharti.in + keyboard reference image)
 **Layout:** desktop: left 6 cols text, right 6 cols keyboard. **Mobile: keyboard first, spanning the full viewport width (edge to edge, no side padding). The eyebrow, H1, sub, CTAs and links all go below it.** Reserve the keyboard's height with `aspect-ratio` so hydration causes no layout shift.
-- Mono eyebrow: `● Available for freelance · Tehran, Iran (UTC+3:30)` with a pulsing green dot.
-- H1 (2–3 lines): `Parisa Adli` + role line *"Frontend developer crafting fast, polished React & Next.js products."* — gradient on one word.
-- Short sub (≤ 2 lines), two CTAs: **View work** (primary) · **Get in touch** (ghost), plus GitHub/LinkedIn icon links.
+- Mono eyebrow: `Full-Stack Developer · React / Next.js / Node` (no status dot, no location, no availability).
+- H1 (2–3 lines): `Parisa Adli` + role line *"Full-stack developer building polished, tested products — React and Next.js up front, Node behind it."* — gradient on **"tested"**.
+- Sub: *"Auth, dashboards, payments, the hard parts done properly."* Two CTAs: **View work** (primary) · **Get in touch** (ghost), plus GitHub/LinkedIn/Instagram icon links.
 - Tiny hint under the keyboard in mono: `try typing ⌨`.
 
-**Keyboard:** a **full-sized mechanical keyboard**: every row and key, never trimmed on any screen size. It is modelled on the owner's reference photos **`docs/keyboard (1).webp`** and **`docs/keyboard (2).webp`** (ignore the `.jpeg`/`.png` files). Match their look: a translucent purple acrylic case, indigo keycaps, a coral spacebar, multicolour RGB light between the keys, and a few art keycaps (these slots hold the tech-stack icon keys).
-- Build options (choose per prototype, see §6): (a) CSS 3D — each key a `<button>` with top face + side faces, perspective ~1200px, tilted `rotateX(28deg) rotateZ(-6deg)`; or (b) React Three Fiber with a lightweight GLB (< 400 KB, Draco) and baked lighting.
+**Keyboard:** a **75% mechanical keyboard** matching the reference photos (F-row, full alpha block, inverted-T arrows, right-edge macro column), the same layout on every screen size and never trimmed further. On mobile its keys are ~24px, below the 44px target, so it is decorative-interactive there: taps still press keys, but nothing it offers (tooltips, easter eggs) is reachable only through it. It is modelled on the owner's reference photos **`docs/keyboard (1).webp`** and **`docs/keyboard (2).webp`** (ignore the `.jpeg`/`.png` files). Match their look: a translucent purple acrylic case, indigo keycaps, a coral spacebar, multicolour RGB light between the keys, and a few art keycaps (these slots hold the tech-stack icon keys).
+- Build options (choose per prototype, see §6): (a) CSS 3D — each key a `<button>` with top face + side faces, perspective ~1200px, tilted `rotateX(28deg) rotateZ(-6deg)`; or (b) React Three Fiber, **procedural** (no GLB): instanced rounded-box keycaps, extruded case, emissive strips for RGB, < 400 KB chunk. Both read one shared key-layout data file.
 - **Interactions:**
   - Physical typing: listening to `keydown/keyup` presses the matching virtual key (translateY 3–4px, shadow shrink, 60ms).
   - Click/tap on keys presses them too.
-  - Short **mechanical click sound** per key (Web Audio, 2–3 sampled variants with random pitch ±3%, preloaded, muted by default with a 🔊 toggle; unmute after first user interaction).
-  - Accent keys (e.g. `Esc`, `Enter`, `Space`) are **tech-stack keycaps**: icons for React, Next.js, TypeScript, Tailwind, Node, GraphQL. Hovering/pressing one shows a small tooltip (`React — 3 yrs`, etc.).
+  - Short **mechanical click sound** per key (Web Audio, 2–3 sampled variants with random pitch ±3%, preloaded). **Muted until the visitor presses the 🔊 toggle**; nothing unmutes automatically.
+  - Accent keys (e.g. `Esc`, `Enter`, `Space`) are **tech-stack keycaps**: icons for React, Next.js, TypeScript, Tailwind, Node, MongoDB (no GraphQL). Hovering/pressing one shows a small tooltip with a project count from `projects.ts` (`React — 5 projects`), never years.
   - Typing a secret word (`hire`, `next`, `react`) triggers an easter egg: keys light up in a wave and a toast appears ("Let's build something → contact").
   - Subtle idle animation: keyboard floats ±6px, cursor-based parallax tilt (max 6°).
 - Performance: keyboard must not block LCP — render H1 first, lazy-hydrate keyboard; LCP element is the H1.
 
 ### 5.2 Projects (ref: yogprajapati.site cards + parthh.in mobile showcase)
 - Section header: `02 — ~/parisa/projects` + title *"Selected work"* + "All repos ↗" link to GitHub.
-- **Card layout:** featured cards full-width (1 per row, alternating text left/right) for top 3 projects; remaining as a 2-col grid of compact cards.
+- **Card layout:** five projects. Featured cards full-width (1 per row, alternating text left/right) for the top 3; the other 2 as a 2-col grid of compact cards.
+- Until the featured demos are deployed, every card is "source only" (no live chip, no Live demo button) and phones show "screenshot pending" frames. All screenshots are captured before launch.
 - **Card anatomy (top → bottom):**
   1. Mono label `PROJECT_01` + category chip (`E-COMMERCE`, `FULL-STACK`, `SaaS`) + status chip (`● live` / `in progress`)
   2. Title (32–40px) + one-line tagline
@@ -149,7 +151,7 @@ spacing scale: 4 8 12 16 24 32 48 64 96 128 160
   - Card lifts 4px; tilt ≤ 3° toward cursor.
   - Phones **fan out** (side phones rotate ±6° and translate outward 16px; center phone rises 8px) with 400ms ease-out; screenshots inside scroll slowly upward to reveal the full page (`object-position` tween).
   - Cursor ring shows `view`.
-- Click → case study page `/work/[slug]` (challenge, approach, stack, screenshots, outcome) — basic template is enough for prototypes.
+- Click → case study page `/work/[slug]`, one shared template styled by the active prototype, built only from existing `projects.ts` fields: header (title, tagline, role, chips, links) → challenge → solution → features → stack → **Proof** block from `signals` (commits, test suites, CI ✓) → screenshots → next-project link. No "Outcome" section (no metrics exist).
 
 ### 5.3 Skills (ref: thvvamshi-dev.onrender.com + parthh.in)
 - Header: `03 — skills.json` + title *"The stack behind the work"*.
@@ -157,35 +159,31 @@ spacing scale: 4 8 12 16 24 32 48 64 96 128 160
   - **Left (4 cols):** a code-editor panel showing `skills.json` with syntax highlighting, line numbers, filter tabs above it: `All · Frontend · Backend · Tooling`. Selecting a tab rewrites the JSON with a typing animation.
   - **Right (8 cols):** a grid of **icon tiles** (64–80px squares, `--bg-1`, 1px border, monochrome icons that turn to brand color on hover, name label in mono below). Tiles not matching the active filter dim to 25% and scale 0.96.
   - A slowly rotating decorative 3D/metallic object or orbit ring behind the grid (parthh.in "rotating cover"), very low contrast, paused off-screen.
-- Skills (from GitHub, confirm with LinkedIn): **Frontend** HTML, CSS3, JavaScript, TypeScript, React, Next.js, Tailwind CSS, (Redux/React Query/Framer Motion if present in repos) · **Backend** Node.js, MongoDB, GraphQL, REST APIs · **Tooling** Git, GitHub Actions, Playwright, Postman, Vercel, Netlify, ESLint/Prettier, Figma (if true), Claude Code / AI-assisted dev.
+- Skills: the list in `content/skills.ts` is authoritative. Confirmed in: GSAP, Vercel. Confirmed out: GraphQL, Netlify, Lenis, Framer Motion.
 - Below: a slim auto-scrolling logo strip of the same icons (single row, mask-faded edges).
 
 ### 5.4 About (ref: portfolio-84ka terminal card)
-- Left: short bio (3–4 sentences from LinkedIn About), with faint line-number gutter.
+- Left: the owner's bio from `profile.about` (4 short paragraphs, verbatim), with faint line-number gutter.
 - Right: **terminal card** with window dots, prompt lines typed in on scroll:
   ```
   parisa@dev ~ $ whoami
-  Frontend developer · React / Next.js · freelance
-  parisa@dev ~ $ cat now.txt
-  {{currently building / learning — from LinkedIn}}
+  Full-stack developer · React / Next.js / Node
   parisa@dev ~ $ _
   ```
-- Stat counters (count-up on enter): public repos, years of experience, projects shipped — only real numbers.
+- **No stat counters or numbers** next to the bio (owner decision 2026-11-03).
 
 ### 5.5 Experience (ref: phyominthein / stackbyprakhar "mission log", toned down)
-- Vertical timeline styled as a git log: each entry = commit dot + hash-like mono id (`a3f9c1`), role, company, dates, 2–3 bullets. Line draws itself on scroll (ScrollTrigger scrub on `scaleY`).
-- Include education + certifications as smaller entries.
+- No paid roles: the timeline is a git log of **independent projects** from `content/experience.ts`, newest first. Each project is a commit (dot + hash-like mono id, title, `YYYY-MM` repo-creation date, one line, link to `/work/[slug]`) on an `independent-projects` branch (2024 – present), which merges down to Education (B.Sc. Software Engineering, 2019) as a smaller entry. No certifications. Line draws itself on scroll (ScrollTrigger scrub on `scaleY`).
 
-### 5.6 GitHub activity (optional, ref: stackbyprakhar)
-- Contribution heatmap (fetched at build time, ISR daily) + language bar from repo stats. Keep it one compact row.
+### 5.6 GitHub activity — removed (owner decision 2026-11-03)
 
 ### 5.7 Contact
 - Huge headline: *"Got an idea worth building?"* with an animated underline.
-- Click-to-copy email button (toast "copied ✓"), LinkedIn, GitHub, optional Cal link.
-- Simple form (name, email, message) styled as a terminal "transmission" — server action or Formspree. Validation messages inline.
+- Click-to-copy email button (toast "copied ✓"), LinkedIn, GitHub, Instagram. No Cal link.
+- Simple form (name, email, message) styled as a terminal "transmission". Backend: **Next.js server action** → Zod validation (inline messages) → honeypot field + simple per-IP rate limit → email via **Resend** to `parisa.adli.dev@gmail.com`. Until `RESEND_API_KEY` is set, the action logs instead of sending. No CAPTCHA.
 
 ### 5.8 Footer = IDE status bar
-`⎇ main · ● available · Tehran 23:11 · built with Next.js + GSAP · © 2026 Parisa Adli` + back-to-top.
+`⎇ main · built with Next.js + GSAP · © 2026 Parisa Adli` + back-to-top.
 
 ---
 
@@ -199,7 +197,7 @@ All three share §2 content, §4 systems and §5 section order. They differ in:
 | Accent | Electric violet `#8B5CF6` → cyan `#22D3EE` | Warm amber `#F59E0B` + off-white keycaps | Lime `#C6F432` on pure black |
 | Fonts | Geist + Geist Mono | Space Grotesk + JetBrains Mono | Instrument Serif (italic accents) + Inter Tight + IBM Plex Mono |
 | Background | Dot matrix + violet spotlight | Fine grid + warm spotlight + subtle noise | Almost flat black, very faint grid, white spotlight |
-| Keyboard | CSS 3D, dark case, violet-lit accent keys | React Three Fiber GLB, closest match to reference photo, RGB underglow | CSS 3D, isometric line-art style (outlined keys, lime on press) |
+| Keyboard | CSS 3D, dark case, violet-lit accent keys | React Three Fiber (procedural, no GLB), closest match to reference photo, RGB underglow | CSS 3D, isometric line-art style (outlined keys, lime on press) |
 | IDE motifs | Strong (tabs, gutter, ⌘K, status bar) | Medium (terminal About, status bar) | Light (mono labels + ⌘K only) |
 | Project cards | Glass card + gradient border glow | Solid card with "keycap" bevel edges | Borderless large cards, big index numbers `01` |
 | Marquee bands | Violet / dark | Amber / dark, caution-tape feel | Lime / black |

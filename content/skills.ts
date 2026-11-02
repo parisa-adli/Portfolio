@@ -2,7 +2,7 @@
 // Skills claimed on the GitHub README but not found in any repo or the CV are left out (see CONTENT_GAPS.md).
 
 export type SkillGroup = "Frontend" | "Backend" | "Tooling";
-export type Skill = { name: string; group: SkillGroup; years?: string };
+export type Skill = { name: string; group: SkillGroup };
 
 export const skills: Skill[] = [
   // Frontend
@@ -18,6 +18,7 @@ export const skills: Skill[] = [
   { name: "Redux Toolkit", group: "Frontend" }, // React-noteApp-RTK
   { name: "React Hook Form", group: "Frontend" },
   { name: "Zod", group: "Frontend" },
+  { name: "GSAP", group: "Frontend" }, // this portfolio (owner decision 2026-11-03)
   // Backend
   { name: "Node.js", group: "Backend" },
   { name: "Express", group: "Backend" },
@@ -27,14 +28,15 @@ export const skills: Skill[] = [
   { name: "JWT auth & RBAC", group: "Backend" },
   // Tooling
   { name: "Git", group: "Tooling" },
-  { name: "GitHub Actions", group: "Tooling" }, // -inventory-app-ai, WorkBridge
+  { name: "Vercel", group: "Tooling" }, // this site + the featured demos (owner decision 2026-11-03)
+  { name: "GitHub Actions", group: "Tooling" }, // inventory-manager, WorkBridge
   { name: "Vitest", group: "Tooling" },
   { name: "Playwright", group: "Tooling" },
   { name: "Postman", group: "Tooling" },
   { name: "Figma", group: "Tooling" },
   { name: "ESLint / Prettier", group: "Tooling" },
-  { name: "Claude Code", group: "Tooling" }, // CLAUDE.md in -inventory-app-ai, NEXAIVON, WorkBridge
+  { name: "Claude Code", group: "Tooling" }, // CLAUDE.md in inventory-manager, NEXAIVON, WorkBridge
 ];
 
-// Hero tech-stack keycaps (DESIGN.md §5.1). Tooltip years are TODO until the owner confirms.
+// Hero tech-stack keycaps (DESIGN.md §5.1). Tooltips show "{name} — N projects", counted from projects.ts stacks. No GraphQL (owner, 2026-11-03).
 export const keycapStack = ["React", "Next.js", "TypeScript", "Tailwind CSS", "Node.js", "MongoDB"] as const;
