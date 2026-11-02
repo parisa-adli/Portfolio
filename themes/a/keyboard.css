@@ -1,0 +1,42 @@
+/* Prototype A keyboard skin: smoked violet acrylic case, indigo caps, coral space,
+   violet-lit accent keys, static RGB glow between keys (docs/keyboard refs). */
+[data-theme="a"] .kb {
+  --kb-case: linear-gradient(160deg, rgba(76, 58, 170, 0.55), rgba(32, 22, 84, 0.75) 55%, rgba(18, 12, 48, 0.9));
+  --kb-case-shadow:
+    inset 0 0 0 1px rgba(167, 139, 250, 0.35),
+    inset 0 2px 0 rgba(255, 255, 255, 0.12),
+    0 calc(var(--u, 30px) * 0.35) 0 #1c1440,
+    0 calc(var(--u, 30px) * 0.4) 0 1px rgba(139, 92, 246, 0.45),
+    0 40px 120px -20px rgba(139, 92, 246, 0.45);
+  --kb-plate:
+    radial-gradient(60% 120% at 10% 100%, rgba(34, 211, 238, 0.35), transparent 70%),
+    radial-gradient(50% 120% at 90% 0%, rgba(236, 72, 153, 0.3), transparent 70%),
+    linear-gradient(90deg, #12204a, #241258 50%, #2a0f3f);
+  --kb-screen-bg: #0b0a1c;
+  --kb-screen-fg: #a5f3fc;
+  --cap-top: linear-gradient(180deg, #5446c4, #3e31a3);
+  --cap-side: #251c6e;
+  --cap-legend: #e9e5ff;
+  --rgb-a: 0.55;
+}
+[data-theme="a"] .key--mod .key__cap,
+[data-theme="a"] .key--macro .key__cap { --cap-top: linear-gradient(180deg, #43379f, #322785); --cap-legend: #c7c0f5; }
+[data-theme="a"] .key--accent .key__cap {
+  --cap-top: linear-gradient(135deg, #8b5cf6, #6d28d9 60%, #4c1d95);
+  --cap-side: #3b1680;
+  --cap-legend: #fff;
+}
+[data-theme="a"] .key--tech .key__cap {
+  --cap-top: linear-gradient(160deg, #1e1854, #2d2280);
+  --cap-side: #150f3d;
+  --cap-legend: #c4b5fd;
+  box-shadow:
+    inset 0 0 0 1px rgba(139, 92, 246, 0.7),
+    0 calc(var(--u) * 0.12) 0 var(--cap-side),
+    0 0 calc(var(--u) * 0.4) rgba(139, 92, 246, 0.55);
+}
+[data-theme="a"] .key--tech:hover .key__cap,
+[data-theme="a"] .key--tech:focus-visible .key__cap,
+[data-theme="a"] .key--tech.is-down .key__cap { --cap-legend: #22d3ee; }
+[data-theme="a"] .key--space .key__cap { --cap-top: linear-gradient(180deg, #ff7486, #ff5a6e); --cap-side: #b83346; }
+[data-theme="a"] .key--arrow .key__cap { --cap-legend: #67e8f9; }

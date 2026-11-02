@@ -1,0 +1,109 @@
+/* ── Skills (§5.3) ── */
+.skills { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: var(--gutter); align-items: start; }
+
+/* Editor panel (left 4 cols) */
+.editor {
+  grid-column: 1 / span 4; position: sticky; top: 96px;
+  border: 1px solid var(--line); border-radius: var(--radius-md); background: var(--bg-1); overflow: hidden;
+}
+.editor__bar { display: flex; align-items: center; gap: 12px; padding: 12px 16px; border-bottom: 1px solid var(--line); }
+.editor__dots { display: inline-flex; gap: 6px; }
+.editor__dots i { width: 10px; height: 10px; border-radius: 50%; background: var(--line-strong); }
+.editor__tabs { display: flex; border-bottom: 1px solid var(--line); overflow-x: auto; }
+.editor__tab {
+  position: relative; min-height: 44px; padding: 0 14px; font-family: var(--font-mono-family), monospace; font-size: 12px;
+  color: var(--text-1); border-right: 1px solid var(--line); transition: color 200ms, background-color 200ms;
+}
+.editor__tab:hover { color: var(--text-0); }
+.editor__tab[aria-selected="true"] { color: var(--text-0); background: var(--bg-2); }
+.editor__tab[aria-selected="true"]::after {
+  content: ""; position: absolute; left: 0; right: 0; top: 0; height: 2px; background: var(--grad);
+}
+.editor__tab:focus-visible { outline-offset: -2px; }
+.editor__code {
+  margin: 0; padding: 16px 0; max-height: 520px; overflow: auto;
+  font-family: var(--font-mono-family), monospace; font-size: 13px; line-height: 1.7;
+}
+.editor__code code { counter-reset: line; }
+.code-line { display: block; white-space: pre; counter-increment: line; }
+/* Line numbers are decorative IDE chrome: drawn by CSS, not text content */
+.code-line::before { content: counter(line); display: inline-block; width: 44px; padding-right: 16px; text-align: right; color: var(--text-2); }
+.code-line__text { display: inline-block; vertical-align: top; }
+.tok-p { color: var(--text-1); }
+.tok-k { color: var(--syntax-key); }
+.tok-s { color: var(--syntax-string); }
+/* Rewrite: one cover over the code wipes downward, line by line. A single linear transform animation
+   (compositor). Per-line steps() covers ran on the main thread and pushed the tab click past INP 200ms. */
+.editor__code { position: relative; }
+.editor__code.is-typing::after {
+  content: ""; position: absolute; inset: 0; background: var(--bg-1);
+  border-top: 2px solid var(--accent-1); transform-origin: top;
+  animation: rewrite 650ms linear both;
+}
+@keyframes rewrite { from { transform: translateY(0); } to { transform: translateY(100%); } }
+
+/* Tiles (right 8 cols) */
+.skills__tiles { grid-column: 5 / span 8; position: relative; }
+.tiles {
+  position: relative; z-index: 1; display: grid; grid-template-columns: repeat(auto-fill, minmax(96px, 1fr));
+  gap: 20px 12px; margin: 0; padding: 0; list-style: none;
+}
+.tile { display: grid; justify-items: center; gap: 10px; text-align: center; transition: opacity 400ms var(--ease-out), transform 400ms var(--ease-out); }
+.tile__box {
+  display: grid; place-items: center; width: 72px; height: 72px; border-radius: var(--radius-md);
+  background: var(--bg-1); border: 1px solid var(--line); color: var(--text-1);
+  transition: color 300ms var(--ease-out), border-color 300ms, transform 300ms var(--ease-out), box-shadow 300ms;
+}
+.tile:hover .tile__box { color: var(--brand); border-color: var(--line-strong); transform: translateY(-2px); }
+.tile__glyph { font-family: var(--font-mono-family), monospace; font-size: 15px; font-weight: 600; letter-spacing: 0.04em; }
+.tile__name { font-family: var(--font-mono-family), monospace; font-size: 11px; line-height: 1.35; color: var(--text-1); max-width: 12ch; }
+.skills:not([data-filter="All"]) .tile { opacity: 0.25; transform: scale(0.96); }
+.skills[data-filter="Frontend"] .tile[data-group="Frontend"],
+.skills[data-filter="Backend"] .tile[data-group="Backend"],
+.skills[data-filter="Tooling"] .tile[data-group="Tooling"] { opacity: 1; transform: none; }
+
+/* Decorative orbit ring behind the grid (low contrast, paused off-screen) */
+.orbit {
+  position: absolute; z-index: 0; left: 50%; top: 50%; width: min(620px, 90%); aspect-ratio: 1; translate: -50% -50%;
+  border-radius: 50%; pointer-events: none;
+  -webkit-mask: radial-gradient(closest-side, transparent 96%, #000 97%, #000 99%, transparent 100%);
+  mask: radial-gradient(closest-side, transparent 96%, #000 97%, #000 99%, transparent 100%);
+}
+/* Only the inner gradient rotates (transform, composited); the static parent holds the mask. */
+.orbit__spin {
+  position: absolute; inset: 0; border-radius: 50%;
+  background: conic-gradient(from 0deg, transparent, var(--orbit-color), transparent 35%, transparent 60%, var(--orbit-color-2), transparent);
+  animation: spin 40s linear infinite;
+}
+.orbit::after {
+  content: ""; position: absolute; inset: 14%; border-radius: 50%; border: 1px dashed var(--line);
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* Logo strip */
+.logo-strip {
+  margin-top: 96px; overflow: hidden; color: var(--text-2);
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 15%, #000 85%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 15%, #000 85%, transparent);
+}
+.logo-strip__track { display: flex; width: max-content; animation: strip 50s linear infinite; }
+.logo-strip__run { display: flex; gap: 48px; padding-right: 48px; }
+@keyframes strip { to { transform: translateX(-50%); } }
+.is-offscreen .orbit__spin, .is-offscreen .logo-strip__track { animation-play-state: paused; }
+
+@media (max-width: 1023px) {
+  .skills { grid-template-columns: minmax(0, 1fr); gap: 40px; }
+  .editor, .skills__tiles { grid-column: 1 / -1; }
+  .editor { position: static; }
+  .editor__code { max-height: 280px; font-size: 12px; }
+  .tiles { grid-template-columns: repeat(auto-fill, minmax(88px, 1fr)); gap: 18px 8px; }
+  .tile__box { width: 60px; height: 60px; }
+  .tile__name { font-size: 10px; }
+  .logo-strip { margin-top: 64px; }
+}
+@media (max-width: 640px) {
+  .tiles { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+}
+@media (max-width: 380px) {
+  .tiles { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}

@@ -1,0 +1,15 @@
+/* ── Diagonal marquee bands (§4.3) ── */
+.bands { position: relative; z-index: 2; height: clamp(180px, 22vw, 300px); display: grid; place-items: center; }
+.band {
+  position: absolute; left: -10vw; right: -10vw; overflow: hidden;
+  padding-block: clamp(12px, 1.4vw, 20px);
+}
+.band--1 { transform: rotate(-4deg); background: var(--band-1-bg); color: var(--band-1-fg); box-shadow: 0 20px 60px -20px rgba(0, 0, 0, 0.7); }
+.band--2 { transform: rotate(3deg); background: var(--band-2-bg); color: var(--band-2-fg); border-block: 1px solid var(--line-strong); }
+.band__track { display: flex; width: max-content; }
+.band__run { display: flex; flex-shrink: 0; }
+.band__item {
+  display: inline-flex; align-items: center; gap: clamp(16px, 2vw, 32px); padding-right: clamp(16px, 2vw, 32px);
+  font-size: clamp(22px, 3.2vw, 44px); font-weight: 700; letter-spacing: -0.01em; line-height: 1; white-space: nowrap;
+}
+.band__star { font-size: 0.6em; opacity: 0.8; }

@@ -1,0 +1,97 @@
+/* CSS 3D keyboard (§5.1) — structure only; colours come from theme vars (--kb-*, --cap-*). */
+.kb { position: relative; container-type: inline-size; aspect-ratio: 19.5 / 8.4; perspective: 1200px; }
+/* Flat 3D: keys lie flat on the case, so no preserve-3d (it made every key its own compositor layer,
+   ~90 layers, and every interaction paid for re-layerizing them). Perspective is set per level instead. */
+.kb__parallax, .kb__float { position: absolute; inset: 0; }
+.kb__float { perspective: 1200px; }
+.kb__parallax { transition: transform 120ms linear; }
+.kb.is-alive .kb__float { animation: kb-float 6s ease-in-out infinite alternate; }
+@keyframes kb-float { from { transform: translateY(-6px); } to { transform: translateY(6px); } }
+.kb__tilt {
+  position: absolute; inset: 0; display: grid; place-items: center;
+  transform: rotateX(var(--kb-rx, 28deg)) rotateZ(var(--kb-rz, -6deg)) scale(var(--kb-scale, 0.9));
+}
+.kb__case {
+  --u: calc(100cqi / 19.5);
+  position: relative;
+  width: calc((var(--kb-w) + 1) * var(--u)); height: calc((var(--kb-h) + 1) * var(--u));
+  border-radius: calc(var(--u) * 0.45);
+  background: var(--kb-case);
+  box-shadow: var(--kb-case-shadow);
+}
+.kb__plate {
+  position: absolute; inset: calc(var(--u) * 0.4); border-radius: calc(var(--u) * 0.2);
+  background: var(--kb-plate);
+}
+.kb__screen {
+  position: absolute; left: calc((15.5 + 0.5) * var(--u)); top: calc(0.5 * var(--u));
+  width: calc(3 * var(--u)); height: var(--u); padding: calc(var(--u) * 0.1);
+}
+.kb__screen-text {
+  display: flex; align-items: center; height: 100%; padding-inline: calc(var(--u) * 0.18); overflow: hidden; white-space: pre;
+  border-radius: calc(var(--u) * 0.12); background: var(--kb-screen-bg); color: var(--kb-screen-fg);
+  font-family: var(--font-mono-family), monospace; font-size: calc(var(--u) * 0.3); letter-spacing: 0.04em;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+}
+.key {
+  position: absolute; padding: calc(var(--u) * 0.05);
+  left: calc((var(--x) + 0.5) * var(--u)); top: calc((var(--y) + 0.5) * var(--u));
+  width: calc(var(--w) * var(--u)); height: var(--u);
+  -webkit-tap-highlight-color: transparent; touch-action: manipulation;
+}
+.key__cap {
+  position: relative; display: flex; flex-direction: column; justify-content: space-between; align-items: flex-start;
+  width: 100%; height: 100%; padding: calc(var(--u) * 0.1) calc(var(--u) * 0.14) calc(var(--u) * 0.16);
+  border-radius: calc(var(--u) * 0.16);
+  background: var(--cap-top);
+  color: var(--cap-legend);
+  font-family: var(--font-mono-family), monospace; font-size: calc(var(--u) * 0.24); line-height: 1; text-transform: lowercase;
+  box-shadow:
+    inset 0 calc(var(--u) * 0.03) 0 rgba(255, 255, 255, 0.14),
+    0 calc(var(--u) * 0.12) 0 var(--cap-side),
+    0 calc(var(--u) * 0.16) calc(var(--u) * 0.28) hsl(var(--h) 95% 60% / var(--rgb-a));
+  transition: transform 60ms ease-out, box-shadow 60ms ease-out;
+}
+.key__shift { opacity: 0.6; font-size: 0.85em; }
+.key--alpha .key__cap { text-transform: uppercase; }
+.key--alpha .key__legend { font-size: 1.15em; }
+.key--space .key__cap, .key--tech .key__cap, .key--arrow .key__cap { align-items: center; justify-content: center; }
+.key__icon { width: 56%; height: 56%; }
+.key.is-down .key__cap {
+  transform: translateY(calc(var(--u) * 0.1));
+  box-shadow:
+    inset 0 calc(var(--u) * 0.03) 0 rgba(255, 255, 255, 0.1),
+    0 calc(var(--u) * 0.02) 0 var(--cap-side),
+    0 calc(var(--u) * 0.04) calc(var(--u) * 0.4) hsl(var(--h) 95% 65% / calc(var(--rgb-a) * 1.8));
+}
+.kb__tip {
+  position: absolute; left: 0; top: 0; pointer-events: none; z-index: 2;
+  padding: 8px 12px; border-radius: var(--radius-sm); background: var(--bg-2); border: 1px solid var(--line-strong);
+  font-family: var(--font-mono-family), monospace; font-size: 12px; white-space: nowrap; color: var(--text-0);
+  opacity: 0; transition: opacity 200ms var(--ease-out);
+}
+.kb__tip.is-on { opacity: 1; }
+/* Easter-egg wave: one light sweep across the board (a single composited animation, not 90). */
+.kb__sweep {
+  position: absolute; inset: 0; z-index: 3; pointer-events: none; overflow: hidden; border-radius: inherit; opacity: 0;
+}
+.kb__sweep::before {
+  content: ""; position: absolute; top: 0; bottom: 0; left: 0; width: 40%;
+  background: linear-gradient(90deg, transparent, var(--kb-sweep, rgba(216, 205, 255, .6)) 45%, rgba(165, 243, 252, .5) 55%, transparent);
+  transform: translateX(-100%);
+}
+.kb.is-wave .kb__sweep { opacity: 1; }
+.kb.is-wave .kb__sweep::before { animation: kb-sweep 1100ms cubic-bezier(.45, 0, .55, 1) both; }
+@keyframes kb-sweep { to { transform: translateX(260%); } }
+
+.sound-toggle {
+  display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 14px; border-radius: 999px;
+  color: var(--text-1); border: 1px solid var(--line); transition: color 200ms, border-color 200ms, background-color 200ms;
+}
+.sound-toggle:hover, .sound-toggle:focus-visible { color: var(--text-0); border-color: var(--line-strong); }
+.sound-toggle[aria-pressed="true"] { color: var(--accent-1); border-color: color-mix(in srgb, var(--accent-1) 40%, transparent); }
+.sound-toggle .label { color: inherit; font-size: 11px; }
+/* Flat wrapper planes sit in front of the tilted keys in 3D hit-testing: only keys take pointer events. */
+.kb__parallax, .kb__float, .kb__tilt, .kb__case { pointer-events: none; }
+.key { pointer-events: auto; }
+.key { display: block; cursor: pointer; user-select: none; -webkit-user-select: none; }

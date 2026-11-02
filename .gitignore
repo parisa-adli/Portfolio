@@ -4,3 +4,11 @@ docs/cv.pdf
 .claude/settings.local.json
 .claude/skills/impeccable/scripts/bin/
 .impeccable/config.local.json
+
+# build
+node_modules/
+.next/
+next-env.d.ts
+/screenshots/
+*.tsbuildinfo
+.impeccable/hook.cache.json

@@ -1,0 +1,118 @@
+@import "tailwindcss";
+
+/* §3.1 shared tokens. Prototypes override accents only (themes/{a,b,c}/tokens.css). */
+:root {
+  --bg-0: #07080a;
+  --bg-1: #0d0f12;
+  --bg-2: #14171c;
+  --line: rgba(255, 255, 255, 0.08);
+  --line-strong: rgba(255, 255, 255, 0.16);
+  --text-0: #edeef0;
+  --text-1: #a3a8b0;
+  --text-2: #6b717a;
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 22px;
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --max-w: 1240px;
+  --gutter: 24px;
+  --section-py: 80px;
+  color-scheme: dark;
+}
+@media (min-width: 1024px) {
+  :root { --section-py: 144px; }
+}
+
+@theme inline {
+  --color-bg-0: var(--bg-0);
+  --color-bg-1: var(--bg-1);
+  --color-bg-2: var(--bg-2);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-text-0: var(--text-0);
+  --color-text-1: var(--text-1);
+  --color-text-2: var(--text-2);
+  --color-accent: var(--accent-0);
+  --color-accent-2: var(--accent-1);
+  --font-sans: var(--font-sans-family), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-mono-family), ui-monospace, monospace;
+  --ease-out: var(--ease-out);
+  --radius-sm: var(--radius-sm);
+  --radius-md: var(--radius-md);
+  --radius-lg: var(--radius-lg);
+}
+
+html { background: var(--bg-0); }
+body {
+  background: var(--bg-0);
+  color: var(--text-0);
+  font-family: var(--font-sans-family, ui-sans-serif), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+::selection { background: color-mix(in srgb, var(--accent-0) 45%, transparent); color: var(--text-0); }
+
+:focus-visible {
+  outline: 2px solid var(--accent-0);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* Layout primitives */
+.container-x {
+  width: 100%;
+  max-width: calc(var(--max-w) + 2 * var(--gutter));
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+@media (max-width: 640px) { :root { --gutter: 20px; } }
+.section { padding-block: var(--section-py); position: relative; }
+.grid-12 { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--gutter); }
+
+/* Type */
+.label {
+  font-family: var(--font-mono-family, ui-monospace), monospace;
+  font-size: 12px;
+  line-height: 1.4;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-1);
+}
+.display {
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 0.98;
+  font-size: clamp(44px, 8vw, 112px);
+}
+.h2 {
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  font-size: clamp(40px, 6.4vw, 88px);
+}
+.grad-text {
+  background: linear-gradient(90deg, var(--accent-0), var(--accent-1));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.sr-only-focusable:not(:focus) {
+  position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .reveal-fade { transition-duration: 600ms !important; }
+}
+
+/* Below-the-fold sections skip rendering until near the viewport (big cut in initial style/layout).
+   contain-intrinsic-size "auto" remembers the real size once rendered, so it doesn't shift later. */
+.cv-auto { content-visibility: auto; contain-intrinsic-size: auto 1400px; }

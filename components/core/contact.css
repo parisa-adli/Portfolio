@@ -1,0 +1,104 @@
+/* ── Contact (§5.7) ── */
+.contact { display: grid; gap: 32px; }
+.contact__title {
+  margin: 0; font-size: clamp(48px, 9vw, 128px); font-weight: 600; letter-spacing: -0.035em; line-height: 0.95; max-width: 12ch;
+}
+.contact__underline { position: relative; display: inline-block; }
+.contact__underline::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: -0.04em; height: 0.06em; border-radius: 999px;
+  background: var(--grad); transform-origin: left; transform: scaleX(var(--ul, 1));
+  transition: transform 900ms var(--ease-out) 200ms;
+}
+.contact.is-armed:not(.is-inview) .contact__underline::after { --ul: 0; }
+.contact__title:hover .contact__underline::after { transform: scaleX(1) translateY(2px); }
+.contact__grid { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: var(--gutter); margin-top: 32px; align-items: start; }
+.contact__direct { grid-column: 1 / span 5; display: grid; gap: 24px; }
+.tx { grid-column: 7 / span 6; }
+
+.copy-email {
+  display: flex; align-items: baseline; justify-content: space-between; gap: 16px; width: 100%; min-height: 56px;
+  padding: 16px 0; border-bottom: 1px solid var(--line-strong); text-align: left;
+  font-size: clamp(18px, 2vw, 26px); letter-spacing: -0.01em; transition: border-color 300ms, color 300ms;
+}
+.copy-email__addr { overflow-wrap: anywhere; }
+.copy-email__hint { color: var(--text-1); transition: color 300ms; }
+.copy-email:hover, .copy-email:focus-visible { border-color: var(--accent-0); }
+.copy-email:hover .copy-email__hint, .copy-email:focus-visible .copy-email__hint { color: var(--accent-1); }
+.contact__links { list-style: none; margin: 0; padding: 0; display: grid; }
+.contact__link {
+  display: grid; grid-template-columns: 24px 1fr auto; align-items: center; gap: 12px; min-height: 52px;
+  border-bottom: 1px solid var(--line); color: var(--text-1); transition: color 200ms, padding 300ms var(--ease-out);
+}
+.contact__link:hover, .contact__link:focus-visible { color: var(--text-0); }
+
+/* Terminal "transmission" form */
+.tx { border: 1px solid var(--line); border-radius: var(--radius-md); background: var(--bg-1); overflow: hidden; }
+.tx__bar { display: flex; align-items: center; gap: 12px; padding: 12px 16px; border-bottom: 1px solid var(--line); }
+.tx__body { display: grid; gap: 20px; padding: 24px; }
+.tx__field { display: grid; gap: 8px; }
+.tx__label { font-family: var(--font-mono-family), monospace; font-size: 13px; color: var(--accent-1); }
+.tx__input {
+  width: 100%; padding: 12px 14px; min-height: 48px; border-radius: var(--radius-sm);
+  background: var(--bg-0); border: 1px solid var(--line-strong); color: var(--text-0);
+  font-family: var(--font-mono-family), monospace; font-size: 16px; line-height: 1.5; resize: vertical;
+  transition: border-color 200ms, box-shadow 200ms;
+}
+.tx__input:focus { outline: none; border-color: var(--accent-0); box-shadow: 0 0 0 3px var(--accent-soft); }
+.tx__input[aria-invalid="true"] { border-color: var(--danger); }
+.tx__err { margin: 0; color: var(--danger); font-size: 14px; }
+.tx__hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+.tx__submit { justify-self: start; font-family: var(--font-mono-family), monospace; }
+.tx__submit:disabled { opacity: 0.6; }
+.tx--done { padding: 32px; display: grid; gap: 8px; font-family: var(--font-mono-family), monospace; }
+.tx__line { margin: 0; }
+.tx__muted { color: var(--text-1); }
+
+@media (max-width: 1023px) {
+  .contact__grid { grid-template-columns: minmax(0, 1fr); gap: 48px; }
+  .contact__direct, .tx { grid-column: 1 / -1; }
+  .tx__body { padding: 20px; }
+}
+
+/* ── Footer status bar (§5.8) ── */
+.statusbar { border-top: 1px solid var(--line); background: var(--bg-1); font-family: var(--font-mono-family), monospace; font-size: 12px; color: var(--text-1); }
+.statusbar__inner { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 24px; min-height: 48px; padding-block: 8px; }
+.statusbar__branch { color: var(--accent-1); }
+.statusbar__top { margin-left: auto; display: inline-flex; align-items: center; gap: 6px; min-height: 44px; transition: color 200ms; }
+.statusbar__top:hover, .statusbar__top:focus-visible { color: var(--text-0); }
+@media (max-width: 640px) {
+  .statusbar__inner { padding-block: 12px; }
+  .statusbar__top { margin-left: 0; }
+}
+
+/* ── ⌘K command menu ── */
+.cmdk {
+  position: fixed; inset: 18vh 0 auto; z-index: 90;
+  width: min(560px, calc(100vw - 32px)); margin: 0 auto; padding: 0; border: 1px solid var(--line-strong);
+  border-radius: var(--radius-md); background: var(--bg-2); color: var(--text-0);
+  box-shadow: 0 40px 120px -20px rgba(0, 0, 0, 0.9), 0 0 0 6px var(--accent-soft);
+}
+.cmdk-overlay { display: none; position: fixed; inset: 0; z-index: 85; background: rgba(4, 5, 7, 0.6); }
+.cmdk[open] + .cmdk-overlay { display: block; }
+.cmdk[open] { animation: cmdk-in 300ms var(--ease-out); }
+@keyframes cmdk-in { from { opacity: 0; transform: translateY(-8px) scale(0.98); } }
+.cmdk__search { display: flex; align-items: center; gap: 12px; padding: 0 16px; border-bottom: 1px solid var(--line); }
+.cmdk__input { flex: 1; min-height: 56px; background: none; border: 0; color: var(--text-0); font-size: 16px; }
+.cmdk__input:focus { outline: none; }
+.cmdk__input::placeholder { color: var(--text-1); }
+.cmdk__esc { font-family: var(--font-mono-family), monospace; font-size: 11px; padding: 2px 6px; border: 1px solid var(--line-strong); border-radius: 4px; color: var(--text-1); }
+.cmdk__list { list-style: none; margin: 0; padding: 8px; max-height: 50vh; overflow: auto; }
+.cmdk__item { display: flex; justify-content: space-between; align-items: center; gap: 16px; min-height: 44px; padding: 0 12px; border-radius: var(--radius-sm); cursor: pointer; }
+.cmdk__item[aria-selected="true"] { background: var(--accent-soft); box-shadow: inset 2px 0 0 var(--accent-0); }
+.cmdk__hint { font-family: var(--font-mono-family), monospace; font-size: 12px; color: var(--text-1); }
+.cmdk__empty { padding: 16px 12px; color: var(--text-1); }
+
+/* ── Dev prototype switcher ── */
+.proto-switch {
+  position: fixed; left: 16px; bottom: 16px; z-index: 60; display: flex; gap: 2px; padding: 4px;
+  border-radius: 999px; background: var(--bg-2); border: 1px solid var(--line-strong);
+  font-family: var(--font-mono-family), monospace; font-size: 12px;
+}
+.proto-switch__item { display: grid; place-items: center; width: 32px; height: 32px; border-radius: 999px; color: var(--text-1); }
+.proto-switch__item.is-current { background: var(--accent-0); color: var(--accent-ink); }
+.proto-switch__item.is-disabled { opacity: 0.45; }
+body:has(.proto-switch) .statusbar__inner { padding-left: 148px; }

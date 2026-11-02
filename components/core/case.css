@@ -1,0 +1,29 @@
+/* ── Case study /work/[slug] (§5.2) ── */
+.case { padding-block: 48px var(--section-py); display: grid; gap: 96px; }
+.case__crumbs { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.case__crumbs .text-link { font-family: inherit; font-size: inherit; letter-spacing: inherit; }
+.case__header { display: grid; gap: 24px; max-width: 900px; }
+.case__title { margin: 0; }
+.case__tagline { margin: 0; font-size: clamp(20px, 2.4vw, 28px); color: var(--text-1); letter-spacing: -0.02em; }
+.case__facts { margin: 0; display: flex; gap: 32px; }
+.case__facts dd { margin: 6px 0 0; }
+.case__grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 64px var(--gutter); }
+.case__block { display: grid; gap: 16px; align-content: start; padding-top: 24px; border-top: 1px solid var(--line); }
+.case__h { margin: 0; color: var(--accent-0); }
+.case__lead { margin: 0; font-size: clamp(19px, 1.8vw, 24px); line-height: 1.45; letter-spacing: -0.01em; max-width: 34ch; }
+.proof { margin: 0; display: grid; gap: 0; }
+.proof__row { display: grid; grid-template-columns: 96px 1fr; gap: 16px; padding: 12px 0; border-bottom: 1px dashed var(--line); }
+.proof__row dd { margin: 0; }
+.case__shots { display: grid; gap: 16px; justify-items: center; }
+.case__shots .phones { width: min(720px, 100%); }
+.case__shots-note { color: var(--text-1); }
+.case__next {
+  display: grid; gap: 12px; padding: 48px 0; border-top: 1px solid var(--line);
+  transition: color 300ms var(--ease-out);
+}
+.case__next:hover .h2, .case__next:focus-visible .h2 { color: var(--accent-1); }
+@media (max-width: 760px) {
+  .case { gap: 64px; padding-top: 32px; }
+  .case__grid { grid-template-columns: minmax(0, 1fr); gap: 40px; }
+}
+.case [class*="pcard__"] { grid-area: auto; }

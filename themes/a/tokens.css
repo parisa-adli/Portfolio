@@ -1,0 +1,28 @@
+/* Prototype A — "Editor": accents only (§3.1, §6). */
+[data-theme="a"] {
+  --accent-0: #8b5cf6; /* electric violet */
+  --accent-1: #22d3ee; /* cyan */
+  --accent-ink: #0b0614; /* text on solid accent */
+  --accent-soft: rgba(139, 92, 246, 0.1);
+  --grad: linear-gradient(90deg, var(--accent-0), var(--accent-1));
+}
+[data-theme="a"] {
+  --dot-color: rgba(255, 255, 255, 0.07);
+  --dot-lit: rgba(196, 181, 253, 0.9);
+  --dot-cell: 32px;
+  --spot-color: rgba(139, 92, 246, 0.11);
+  --cursor-ring: rgba(237, 238, 240, 0.5);
+}
+[data-theme="a"] {
+  --band-1-bg: linear-gradient(90deg, #8b5cf6, #7c4dff 60%, #6d5bf6);
+  --band-1-fg: #0b0614;
+  --band-2-bg: var(--bg-2);
+  --band-2-fg: #c4b5fd;
+}
+[data-theme="a"] {
+  --syntax-key: #67e8f9;
+  --syntax-string: #c4b5fd;
+  --orbit-color: rgba(139, 92, 246, 0.35);
+  --orbit-color-2: rgba(34, 211, 238, 0.25);
+}
+[data-theme="a"] { --danger: #fb7185; }
