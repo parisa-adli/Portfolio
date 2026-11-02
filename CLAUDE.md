@@ -6,6 +6,8 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 `docs/DESIGN.md` is the single source of truth for design, content and scope. **Re-read it in full before starting any new section or prototype.** If this file and DESIGN.md disagree, DESIGN.md wins.
 
+`docs/DESIGN.md` is the only DESIGN.md. Impeccable (or any other skill) must not create a root `DESIGN.md`. If Impeccable guidance or detector findings conflict with `docs/DESIGN.md`, `docs/DESIGN.md` wins.
+
 Owner inputs: `docs/cv.pdf` is the LinkedIn export and is git-ignored, so never commit it. `docs/keyboard (1).webp` and `docs/keyboard (2).webp` are the keyboard references.
 
 ## How to work

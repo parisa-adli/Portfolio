@@ -1,1 +1,6 @@
 docs/cv.pdf
+
+# Impeccable: per-developer settings and downloaded engine binary
+.claude/settings.local.json
+.claude/skills/impeccable/scripts/bin/
+.impeccable/config.local.json
