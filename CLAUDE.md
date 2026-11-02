@@ -2,40 +2,58 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
-## Current state
+## Source of truth
 
-Pre-scaffold. The repo contains only `docs/`:
-- `docs/PORTFOLIO_DESIGN_SPEC.md` — the full brief. **Read it before writing any code**; it is the source of truth for sections, tokens, motion, and acceptance checks.
-- `docs/cv.pdf` — the owner's LinkedIn PDF export (the only LinkedIn source).
-- `docs/keyboard (1).webp`, `docs/keyboard (2).webp` — the hero keyboard references. Ignore the `.jpeg`/`.png`.
+`docs/DESIGN.md` is the single source of truth for design, content and scope. **Re-read it in full before starting any new section or prototype.** If this file and DESIGN.md disagree, DESIGN.md wins.
 
-Owner decisions already folded into the spec (§5.1): the keyboard is full-sized, with no rows ever trimmed. On mobile it comes first, spanning the full viewport width, and all other hero content goes below it.
+Owner inputs: `docs/cv.pdf` is the LinkedIn export and is git-ignored, so never commit it. `docs/keyboard (1).webp` and `docs/keyboard (2).webp` are the keyboard references.
 
-Not a git repo yet. No package.json, so no build/lint/test commands exist yet — update this file once the project is scaffolded.
+## How to work
 
-## What is being built
+- **Build one prototype at a time** (A, then B, then C). Stop and wait for the owner's approval before starting the next one.
+- Gather content first (§2), then build in this order: tokens → layout shell → hero keyboard → projects → skills → marquee bands → remaining sections → polish → audits.
+- **After finishing each section**, run the dev server and take Playwright screenshots at **1440px** and **390px**. Review them and fix issues before moving on.
+- **Never invent content, metrics or links.** Use `{{TODO: ...}}` placeholders and log each one in `CONTENT_GAPS.md`.
 
-A personal portfolio for Parisa Adli (freelance React/Next.js frontend developer), as **three interchangeable prototypes** (A "Editor", B "Mechanical", C "Editorial") sharing the same content, sections, and component API, differing only in visual direction (spec §6).
+## Tech stack (§7)
 
-Planned stack (spec §7): Next.js 15 App Router + TypeScript + Tailwind v4 (tokens as CSS variables), GSAP + ScrollTrigger + SplitText, Lenis, React Three Fiber only for prototype B's keyboard (dynamic import, `ssr:false`), Playwright for project screenshots and visual checks, Vercel deploy.
+- Next.js 15 App Router + TypeScript + Tailwind CSS v4, with tokens as CSS variables.
+- GSAP 3 (ScrollTrigger, SplitText) + Lenis. React Three Fiber + drei only for prototype B's keyboard (dynamic import, `ssr:false`).
+- Playwright for screenshots and visual checks. `next/image` (AVIF/WebP) and `next/font` (self-hosted). Deploy to Vercel.
+- Content lives only in typed files in `/content`. Shared logic goes in `/components/core`; per-prototype styling goes in `/themes/{a,b,c}`.
 
-## Architecture rules
+## Design tokens (§3.1)
 
-- Routes `/a`, `/b`, `/c` plus `/work/[slug]`; dev-only `A · B · C` switcher bottom-left that keeps scroll position.
-- Prototypes read content **only** from typed files in `/content` (`profile.ts`, `projects.ts`, `skills.ts`, `experience.ts`; raw sources in `/content/raw/`). Shared logic in `/components/core`; visual variants in `/themes/{a,b,c}` override accents/fonts only, not structure.
-- Per-frame effects (cursor, spotlight) use one `requestAnimationFrame` loop writing CSS variables (`--mx`, `--my`) — never React state per frame. Progress bars animate `scaleX`/`scaleY`, never `width`/`height`.
-- Hero H1 is the LCP element; the keyboard must be lazy-hydrated and must not block it.
-- Everything honours `prefers-reduced-motion` (opacity fades only, no Lenis, no custom cursor/spotlight) and touch devices (no custom cursor/spotlight).
+- Backgrounds: `--bg-0 #07080A`, `--bg-1 #0D0F12`, `--bg-2 #14171C`. Lines: `--line` at 8% white, `--line-strong` at 16% white.
+- Text: `--text-0 #EDEEF0`, `--text-1 #A3A8B0`, `--text-2 #6B717A`.
+- Radii: 8 / 14 / 22px. Easing: `--ease-out: cubic-bezier(.22,1,.36,1)`. Spacing: 4 8 12 16 24 32 48 64 96 128 160.
+- Prototypes override **accents only**.
+- Type: one sans + one mono. Display headings are 64–120px at -0.03em. Mono labels are 11–12px uppercase at +0.12em.
+- Grid: 12 columns, 1240px max width, 24px gutters. Section padding is 128–160px on desktop and 80px on mobile.
 
-## Workflow (spec §0)
+## Motion (§4.4)
 
-1. Content pipeline first (spec §2): GitHub via `gh`/public API → `/content/raw/github.json`; never scrape LinkedIn.
-2. Build order: tokens → layout shell → hero keyboard → projects → skills → marquee bands → remaining sections → polish → audits.
-3. After each major section, run the dev server and take Playwright screenshots at 1440px and 390px; review and fix before moving on.
+- Heading reveals: split by line or word, `y: 100% → 0`, stagger 0.04, 0.8s `--ease-out`, once per element.
+- Micro-interactions take 200–400ms; reveals take 600–900ms. Only marquees, the caret and the status dot loop.
+- Per-frame effects use one rAF loop writing CSS variables, never React state. Animate `scaleX`/`scaleY`, never `width`/`height`.
+- `prefers-reduced-motion`: opacity fades only, no Lenis, no custom cursor or spotlight.
 
-## Hard rules
+## Do / Do not (§8)
 
-- No lorem ipsum, invented metrics, fake testimonials, or `#` links. Missing facts become `{{TODO: ...}}` and are logged in `CONTENT_GAPS.md`; hide buttons with no real URL.
-- Instagram link: confirm with the owner before including.
-- Reference sites (spec §10): take interaction ideas only, never their code or assets.
-- Done means passing spec §9 (Lighthouse mobile ≥ 90/95/95/95, CLS < 0.05, first-load JS < 200 KB gz excluding the 3D chunk, WCAG AA, keyboard nav) and producing `CONTENT_GAPS.md` + `PROTOTYPES.md`.
+- Do: one focal point per section; real content and links only; every hover state also reachable via `:focus-visible`; touch targets ≥ 44px; a mobile layout that is designed, not just stacked.
+- Don't:
+  - A generic template look.
+  - Particle storms, autoplaying sound, or scroll-jacking beyond Lenis.
+  - More than one 3D object in view at a time.
+  - Neon gradients everywhere, glassmorphism on every element, or emoji decoration.
+  - `#` links, fake testimonials, or invented metrics.
+  - Layout shift from fonts or images.
+
+## Acceptance checks (§9), required before a prototype counts as done
+
+- Lighthouse mobile: Performance ≥ 90; Accessibility, Best Practices and SEO ≥ 95.
+- LCP < 2.0s, CLS < 0.05, INP < 200ms. First-load JS < 200 KB gzipped (excluding the lazy 3D chunk).
+- WCAG AA contrast, full keyboard navigation, reduced-motion mode verified.
+- Tested at widths 390 / 768 / 1280 / 1440 / 1920, in Safari and Chrome.
+- Meta: title, description, OG image, favicon, `sitemap.xml`, `robots.txt`, JSON-LD `Person`.
+- Write `CONTENT_GAPS.md` and `PROTOTYPES.md`.
