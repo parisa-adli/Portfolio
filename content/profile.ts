@@ -23,7 +23,7 @@ export type Profile = {
 
 export const profile: Profile = {
   name: "Parisa Adli",
-  // CV says "Full-Stack Developer"; GitHub bio and DESIGN.md say "Frontend Developer". Owner to pick.
+  // Owner confirmed Full-Stack (2026-11-03).
   headline: "Full-Stack Developer",
   stackLine: "React · Next.js · TypeScript · Node.js · Express",
   positioning: "Frontend developer crafting fast, polished React & Next.js products.",

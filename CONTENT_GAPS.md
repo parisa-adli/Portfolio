@@ -10,12 +10,13 @@ Everything that is missing or unverified after the §2 content pipeline (2026-11
   - Need MongoDB + env secrets: the other four.
   - Otherwise use "screenshot pending" placeholder frames.
 - [ ] **Work experience:** the CV has no experience section. `experience.ts` needs role, company/clients, dates and 2–3 bullets per role.
-- [ ] **Headline:** the CV says "Full-Stack Developer"; the GitHub bio and DESIGN.md say "Frontend Developer". `profile.ts` uses the CV for now.
+- [x] **Headline:** owner chose **Full-Stack Developer** (2026-11-03). Still to do: `profile.positioning` and DESIGN.md §1/§5.1/§5.4 still say "Frontend developer…", so they need rewording.
 - [ ] **CV error:** the WorkBridge entry in the CV repeats the NEXAIVON bullets (e-commerce, Zarinpal, Next.js 15). WorkBridge is actually a freelancing platform (React + Vite + Express). `projects.ts` follows the repo README; fix the CV/LinkedIn too.
 
 ## Profile facts
 
 - [ ] Location: DESIGN.md says Tehran, Iran (UTC+3:30). It's not in the CV. Also drives the footer clock (`timezone`).
+- [ ] **Not cleared for public use (2026-11-03):** location and "available for freelance" must stay off the site (hero eyebrow, footer status bar, `profile.available`) until the owner confirms.
 - [ ] Availability: "available for freelance" (DESIGN.md) needs confirming.
 - [ ] Years of experience (About stat counter + keycap tooltips like "React — 3 yrs"). Earliest public React repo is Oct 2024, but that's no proof of start date.
 - [ ] Projects shipped (stat counter): no deployments found, so there's no honest number yet.
