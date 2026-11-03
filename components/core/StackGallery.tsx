@@ -2,7 +2,8 @@
 
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { scroller } from "@/lib/motion";
 
 export type GalleryItem = { src?: string; title: string; category: string; detail?: string; href?: string };
 
@@ -19,6 +20,41 @@ export function StackGallery({ items, label, wide, sizes = wide ? "(max-width: 6
   const go = (i: number) => setActive((i + n) % n);
   const pad = (i: number) => String(i + 1).padStart(2, "0");
   const lead = hover ?? active;
+  // Lightbox always shows items[active], so arrows/swipes in it also move the stack behind it.
+  const [open, setOpen] = useState(false);
+  const dialog = useRef<HTMLDialogElement>(null);
+
+  useEffect(() => {
+    if (!open) return;
+    dialog.current?.showModal();
+    const root = document.documentElement;
+    root.style.overflow = "hidden";
+    scroller.lenis?.stop();
+    return () => {
+      root.style.overflow = "";
+      scroller.lenis?.start();
+    };
+  }, [open]);
+
+  const swipe = {
+    onPointerDown: (e: React.PointerEvent) => (down.current = { x: e.clientX, swiped: false }),
+    onPointerUp: (e: React.PointerEvent) => {
+      const d = down.current;
+      if (!d) return;
+      const dx = e.clientX - d.x;
+      if (Math.abs(dx) > 40) {
+        d.swiped = true;
+        go(active + (dx < 0 ? 1 : -1));
+      }
+    },
+  };
+  // A swipe ends in a click; swallow it so it doesn't open/close anything.
+  const wasSwipe = () => {
+    const s = down.current?.swiped;
+    down.current = null;
+    return s;
+  };
+  const cur = items[active];
 
   return (
     <div
@@ -35,16 +71,7 @@ export function StackGallery({ items, label, wide, sizes = wide ? "(max-width: 6
     >
       <div
         className="sg__stage"
-        onPointerDown={(e) => (down.current = { x: e.clientX, swiped: false })}
-        onPointerUp={(e) => {
-          const d = down.current;
-          if (!d) return;
-          const dx = e.clientX - d.x;
-          if (Math.abs(dx) > 40) {
-            d.swiped = true;
-            go(active + (dx < 0 ? 1 : -1));
-          }
-        }}
+        {...swipe}
         onPointerLeave={() => setHover(null)}
       >
         {items.map((it, i) => {
@@ -76,11 +103,10 @@ export function StackGallery({ items, label, wide, sizes = wide ? "(max-width: 6
               onFocus={() => setHover(i)}
               onBlur={() => setHover(null)}
               onClick={() => {
-                const swiped = down.current?.swiped;
-                down.current = null;
-                if (swiped) return;
-                if (i !== active) go(i);
-                else if (it.href) router.push(it.href);
+                if (wasSwipe()) return;
+                go(i);
+                if (it.href) router.push(it.href);
+                else setOpen(true);
               }}
             >
               <span className="sg__media">
@@ -116,6 +142,43 @@ export function StackGallery({ items, label, wide, sizes = wide ? "(max-width: 6
           ›
         </button>
       </div>
+
+      {open && (
+        <dialog
+          ref={dialog}
+          className="lb"
+          aria-label={`${label}: ${cur.title}`}
+          onClose={() => setOpen(false)}
+          onClick={(e) => !wasSwipe() && e.target === e.currentTarget && dialog.current?.close()}
+          {...swipe}
+        >
+          <figure className="lb__fig" key={active}>
+            <div className={wide ? "lb__frame lb__frame--wide" : "lb__frame"}>
+              {cur.src ? (
+                <Image src={cur.src} alt={`${cur.title}, ${cur.category}`} fill sizes="100vw" unoptimized className="lb__img" draggable={false} />
+              ) : (
+                <span className="sg__pending label">screenshot pending</span>
+              )}
+            </div>
+            <figcaption className="lb__cap">
+              <span className="sg__title">{cur.title}</span>
+              <span className="sg__cat">{cur.category}</span>
+            </figcaption>
+          </figure>
+          <span className="lb__count label" aria-live="polite">
+            {active + 1} / {n}
+          </span>
+          <button type="button" className="sg__btn lb__close" aria-label="Close" onClick={() => dialog.current?.close()}>
+            ×
+          </button>
+          <button type="button" className="sg__btn lb__prev" aria-label="Previous image" onClick={() => go(active - 1)}>
+            ‹
+          </button>
+          <button type="button" className="sg__btn sg__btn--next lb__next" aria-label="Next image" onClick={() => go(active + 1)}>
+            ›
+          </button>
+        </dialog>
+      )}
     </div>
   );
 }

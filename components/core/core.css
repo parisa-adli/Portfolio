@@ -34,6 +34,9 @@
 .has-cursor .fx-dot, .has-cursor .fx-ring { display: block; }
 .has-cursor, .has-cursor * { cursor: none; }
 .has-cursor input, .has-cursor textarea { cursor: text; }
+/* Modal dialogs sit in the top layer, above the custom cursor, so they need the native one. */
+.has-cursor .lb, .has-cursor .lb * { cursor: auto; }
+.has-cursor .lb button { cursor: pointer; }
 .fx-dot::before, .fx-ring::before {
   content: ""; position: absolute; border-radius: 999px;
   transition: transform 300ms var(--ease-out), opacity 300ms var(--ease-out), background-color 300ms, border-color 300ms;

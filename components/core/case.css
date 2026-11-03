@@ -103,6 +103,34 @@
   .sg { --card-w: min(68vw, 280px); --step: min(60vw, 250px); }
   .sg__card[data-dist="2"] { opacity: 0; pointer-events: none; }
 }
+/* Lightbox (StackGallery): native modal <dialog>, Escape closes it natively. */
+.lb {
+  position: fixed; inset: 0; width: 100vw; height: 100dvh; max-width: none; max-height: none; margin: 0;
+  padding: 72px 96px 56px; border: 0; background: transparent; color: var(--text-0);
+  display: grid; place-items: center; touch-action: pan-y; user-select: none;
+}
+.lb:not([open]) { display: none; }
+.lb::backdrop { background: rgba(7, 8, 10, 0.92); }
+.lb__fig { margin: 0; display: grid; gap: 16px; justify-items: center; animation: lb-in 450ms var(--ease-out); }
+.lb__frame { position: relative; height: calc(100dvh - 200px); aspect-ratio: 251 / 546; max-width: calc(100vw - 192px); }
+.lb__frame--wide { aspect-ratio: 16 / 10; height: auto; width: min(1400px, calc(100vw - 192px), (100dvh - 200px) * 1.6); }
+.lb__img { object-fit: contain; border-radius: 14px; }
+.lb__cap { display: grid; gap: 2px; text-align: center; }
+.lb__count { position: absolute; top: 28px; left: 50%; translate: -50% 0; color: var(--text-1); }
+.lb__close { position: absolute; top: 16px; right: 16px; }
+.lb__prev, .lb__next { position: absolute; top: 50%; translate: 0 -50%; }
+.lb__prev { left: 24px; }
+.lb__next { right: 24px; }
+@keyframes lb-in { from { opacity: 0; transform: scale(0.97); } }
+@media (max-width: 640px) {
+  .lb { padding: 64px 12px 96px; }
+  .lb__frame { max-width: calc(100vw - 24px); height: calc(100dvh - 240px); }
+  .lb__frame--wide { width: calc(100vw - 24px); height: auto; }
+  .lb__prev, .lb__next { top: auto; bottom: 24px; translate: none; }
+  .lb__prev { left: calc(50% - 64px); }
+  .lb__next { right: calc(50% - 64px); }
+}
+
 /* Landscape content gallery (projects.ts `gallery`): 16:10 media. */
 .sg--wide { --card-w: 540px; --step: 300px; }
 .sg--wide .sg__stage { height: calc(var(--card-w) * 0.625 + 140px); }
@@ -111,4 +139,6 @@
 @media (max-width: 640px) { .sg--wide { --card-w: 84vw; --step: 74vw; } }
 @media (prefers-reduced-motion: reduce) {
   .sg__card, .sg__detail, .sg__arrow { transition: opacity 300ms linear; }
+  .lb__fig { animation-name: lb-fade; }
 }
+@keyframes lb-fade { from { opacity: 0; } }
