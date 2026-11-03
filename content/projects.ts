@@ -66,6 +66,14 @@ export const projects: Project[] = [
       ci: true,
     },
     featured: true,
+    gallery: [
+      { file: "dashboard.jpg", caption: "dashboard 01" },
+      { file: "dashboard2.jpg", caption: "dashboard 02" },
+      { file: "movements.jpg", caption: "movements" },
+      { file: "users.jpg", caption: "users" },
+      { file: "profile.jpg", caption: "profile" },
+      { file: "products.jpg", caption: "products" },
+    ],
   },
   {
     slug: "nexaivon",
