@@ -164,12 +164,23 @@ spacing scale: 4 8 12 16 24 32 48 64 96 128 160
 
 ### 5.4 About (ref: portfolio-84ka terminal card)
 - Left: the owner's bio from `profile.about` (4 short paragraphs, verbatim), with faint line-number gutter.
-- Right: **terminal card** with window dots, prompt lines typed in on scroll:
+- Right: a small **photo window** (`parisa.jpg`, ~200px, same title-bar-with-dots frame as the terminal; never a centred round avatar, never in the Hero) above the **terminal card**. Mobile: bio, then photo, then terminal. The photo comes from `profile.photo`; if the field or `public/parisa.jpg` is missing, nothing renders (owner decision 2026-11-03).
+- **Terminal card** (owner decision 2026-11-03): data-driven from `profile.terminal`. Commands type in on scroll, output appears at once, whole sequence capped at ~3.4 s; full text is in the DOM from the start; reduced motion shows it instantly; caret on the final empty prompt.
   ```
-  parisa@dev ~ $ whoami
-  Full-stack developer · React / Next.js / Node
-  parisa@dev ~ $ _
+  $ whoami
+  Full-stack developer
+  $ cat stack.txt
+  front   React · Next.js · TypeScript
+  back    Node · Express · MongoDB
+  tests   Vitest · Playwright · GitHub Actions
+  $ cat focus.txt
+  auth & RBAC, payments, inventory that holds under load
+  $ ls ~/featured
+  inventory-manager  nexaivon  workbridge      ← links to /work/[slug], slugs read from projects.ts (featured)
+  $ ▍
   ```
+  Stack columns sit on a monospace grid that wraps (never scrolls sideways) at 390px.
+- **Optional status line** (owner decision 2026-11-03): `profile.status`, unset by default. When set, the terminal adds `$ cat status.txt` + that text before the final prompt. **Availability stays off the site unless the owner sets this field.**
 - **No stat counters or numbers** next to the bio (owner decision 2026-11-03).
 
 ### 5.5 Experience (ref: phyominthein / stackbyprakhar "mission log", toned down)

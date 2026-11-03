@@ -1,4 +1,4 @@
-/* ── About (§5.4) ── */
+/* â”€â”€ About (Â§5.4) â”€â”€ */
 .about { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: var(--gutter); align-items: start; }
 .about__bio { grid-column: 1 / span 7; position: relative; padding-left: 60px; --fs: clamp(18px, 1.6vw, 21px); --lh: calc(var(--fs) * 1.65); font-size: var(--fs); }
 .about__gutter {
@@ -14,21 +14,30 @@
 .about__text p { margin: 0 0 var(--lh); line-height: var(--lh); color: var(--text-1); max-width: 56ch; text-wrap: pretty; }
 .about__text p:first-child { color: var(--text-0); }
 .about__text p:last-child { margin-bottom: 0; }
-.term { grid-column: 9 / span 4; border: 1px solid var(--line); border-radius: var(--radius-md); background: var(--bg-1); overflow: hidden; position: sticky; top: 96px; }
+.about__side { grid-column: 9 / span 4; position: sticky; top: 96px; display: grid; gap: 24px; justify-items: start; }
+.term { width: 100%; border: 1px solid var(--line); border-radius: var(--radius-md); background: var(--bg-1); overflow: hidden; }
+.about__photo { width: 200px; margin: 0; }
+.about__img { position: relative; aspect-ratio: 1; }
+.about__img img { object-fit: cover; object-position: 50% 30%; }
 .term__bar { display: flex; align-items: center; gap: 12px; padding: 12px 16px; border-bottom: 1px solid var(--line); }
 .term__body { padding: 20px; display: grid; gap: 8px; font-family: var(--font-mono-family), monospace; font-size: 13px; line-height: 1.6; }
 .term__line { margin: 0; white-space: pre-wrap; }
 .term__prompt { color: var(--accent-1); }
 .term__path { color: var(--accent-0); }
-.term__out { color: var(--text-1); }
+.term__cmd { width: fit-content; max-width: 100%; }
+.term__out { color: var(--text-1); display: flex; flex-wrap: wrap; column-gap: 2ch; }
+.term__row { flex-basis: 100%; display: grid; grid-template-columns: 8ch minmax(0, 1fr); }
+.term__row > :only-child { grid-column: 1 / -1; }
+.term__link { display: inline-block; padding-block: 12px; margin-block: -12px; color: var(--text-0); text-decoration: underline; text-decoration-color: var(--line-strong); text-underline-offset: 3px; transition: color 200ms, text-decoration-color 200ms; }
+.term__link:hover, .term__link:focus-visible { color: var(--accent-1); text-decoration-color: currentColor; }
 .term.is-armed .term__line { clip-path: inset(0 100% 0 0); }
-.term.is-typed .term__line { animation: type-line calc(var(--n) * 28ms) steps(var(--n), end) var(--d) forwards; }
+.term.is-typed .term__line { animation: type-line var(--t) steps(var(--n), end) var(--d) forwards; }
 @keyframes type-line { to { clip-path: inset(0 0 0 0); } }
 .term.is-done .term__line { animation: none; clip-path: none; }
 .term.is-armed:not(.is-done) .caret { animation: none; }
 @media (prefers-reduced-motion: reduce) { .term.is-armed .term__line { clip-path: none; } }
 
-/* ── Experience: git log (§5.5) ── */
+/* â”€â”€ Experience: git log (Â§5.5) â”€â”€ */
 .gitlog { max-width: 820px; --lane: 28px; }
 .gitlog__branch { display: inline-flex; gap: 8px; padding: 6px 12px; margin: 0 0 32px; border: 1px solid var(--line-strong); border-radius: 999px; color: var(--accent-1); }
 .gitlog__range { color: var(--text-1); }
@@ -56,8 +65,8 @@
 
 @media (max-width: 1023px) {
   .about { grid-template-columns: minmax(0, 1fr); gap: 48px; }
-  .about__bio, .term { grid-column: 1 / -1; }
-  .term { position: static; }
+  .about__bio, .about__side { grid-column: 1 / -1; }
+  .about__side { position: static; }
   .about__bio { padding-left: 44px; }
   .about__gutter { width: 30px; padding-right: 8px; }
 }

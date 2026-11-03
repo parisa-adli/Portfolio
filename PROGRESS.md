@@ -18,6 +18,8 @@
   - 390 / 768 / 1440 checked. Screenshots are in `docs/screenshots/`, with no console errors.
 - **SEO verified:** title, description, canonical, OG + Twitter tags, OG image (1200×630 PNG), favicon (`icon.svg`), `sitemap.xml` (`/` + 5 case studies), `robots.txt`, and JSON-LD `Person` for Parisa Adli with GitHub, LinkedIn and Instagram in `sameAs`.
 
+- **About update (owner decision 2026-11-03):** terminal card is now data-driven (`profile.terminal`, typing schedule in `lib/terminal.ts` + test, capped at ~3.4 s), with stack columns on a wrapping mono grid and the 3 featured projects as `/work/[slug]` links. Optional `profile.status` line (unset). Framed photo window (`profile.photo`, next/image, lazy, square, no CLS) beside the bio, above the terminal on mobile. `role` prop removed. Tests 5/5, build clean (`/` first-load 127 KB), axe 0 violations, 44 tab stops all with a ring, reduced motion verified.
+
 ## Left
 - [ ] Everything in `CONTENT_GAPS.md`. The launch blockers are `NEXT_PUBLIC_SITE_URL` (canonical, OG, sitemap and JSON-LD still point at `http://localhost:3000`), `RESEND_API_KEY` + `RESEND_FROM`, the featured demo deploys, and the 15 project screenshots.
 - [ ] Real Safari / iPhone check (owner).

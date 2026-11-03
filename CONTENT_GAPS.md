@@ -7,6 +7,7 @@ What is still open after the owner review on 2026-11-03. Resolved decisions are 
 - [ ] **Deploy the 3 featured projects** (Inventory Manager, NEXAIVON, WorkBridge) as seeded demos, e.g. Vercel + MongoDB Atlas. Then send the URLs: they set `liveUrl`, the "● live" chip and the "Live demo ↗" button.
 - [ ] **Rename `-inventory-app-ai` → `inventory-manager` on GitHub.** `projects.ts` already uses the new name. Tell Claude if you choose a different one.
 - [ ] **Fix the WorkBridge entry on the CV/LinkedIn:** it repeats the NEXAIVON bullets. The site follows the repo README.
+- [ ] Provide a photo at public/parisa.jpg (square, ≥ 600px). A portrait is in place now (converted from `public/parisa.jpg.png`, shown square-cropped); swap it for a square crop if you prefer, and delete `parisa.jpg.png`.
 - [ ] Optional: unpin `React-rick-and-morty-app` and remove the GraphQL badge from the GitHub profile README, so the profile matches the site.
 
 ## Before launch (Claude)

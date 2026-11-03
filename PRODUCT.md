@@ -40,6 +40,7 @@ Three prototypes (A Editor, B Mechanical, C Editorial) share the same content an
 - All content lives in typed files in `/content` (`profile.ts`, `projects.ts`, `skills.ts`, `experience.ts`). Raw GitHub data is in `/content/raw`.
 - Never invent content, metrics or links. Use `{{TODO: ...}}` placeholders and log each one in `CONTENT_GAPS.md`.
 - **Decided 2026-11-03:** location, timezone, availability, spoken languages, certifications, years of experience and stat counters stay off the site. Instagram is `https://www.instagram.com/parisa.adli.dev`. Work experience: none; the Experience section is a git log of independent projects.
+- **Owner decision 2026-11-03 (About):** the terminal card is data-driven from `profile.terminal` (whoami, stack, focus, featured links to `/work/[slug]`). An optional `profile.status` line exists but stays unset, so availability is still off the site. A small framed photo (`profile.photo` → `public/parisa.jpg`) sits next to the bio in About, never in the Hero.
 - Open: live demo URLs and screenshots. See `CONTENT_GAPS.md`.
 - Performance and quality gates are in `docs/DESIGN.md` §9.
 

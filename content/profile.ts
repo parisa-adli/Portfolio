@@ -2,7 +2,11 @@
 // plus owner decisions from the 2026-11-03 review. Location, availability, languages, certifications,
 // stats and a now.txt line are deliberately absent (owner decision; see DESIGN.md §5).
 
+import { projects } from "./projects";
+
 export type Link = { label: string; href: string };
+/** One terminal command; each `out` entry is an output line, links render inline as a row. A tab splits a line into aligned columns. */
+export type TerminalEntry = { cmd: string; out: (string | { text: string; href: string })[] };
 
 export type Profile = {
   name: string;
@@ -14,6 +18,11 @@ export type Profile = {
   email: string;
   links: Link[];
   education: { degree: string; field: string; school: string; year: number }[];
+  terminal: TerminalEntry[];
+  /** Shown as `$ cat status.txt` when set. Unset = availability stays off the site (owner decision 2026-11-03). */
+  status?: string;
+  /** Path under /public. If the field or the file is missing, About renders no photo. */
+  photo?: { src: string; alt: string };
 };
 
 export const profile: Profile = {
@@ -42,4 +51,14 @@ export const profile: Profile = {
       year: 2019, // graduation year (owner confirmed single year)
     },
   ],
+  // Owner decision 2026-11-03: data-driven About terminal.
+  terminal: [
+    { cmd: "whoami", out: ["Full-stack developer"] },
+    {
+      cmd: "cat stack.txt",
+      out: ["front	React · Next.js · TypeScript", "back	Node · Express · MongoDB", "tests	Vitest · Playwright · GitHub Actions"],
+    },
+    { cmd: "cat focus.txt", out: ["auth & RBAC, payments, inventory that holds under load"] },
+  ],
+  photo: { src: "/parisa.jpg", alt: "Portrait of Parisa Adli" },
 };
