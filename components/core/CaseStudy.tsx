@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { Project } from "@/content/projects";
 import { PhoneMockup } from "./PhoneMockup";
 import { PointerFX } from "./PointerFX";
+import { SHOTS, screenshotSrc } from "@/lib/screenshots";
 
 type Props = { project: Project; index: number; next: Project };
 
@@ -14,6 +15,7 @@ export function CaseStudy({ project: p, index, next }: Props) {
     { k: "tests", v: p.signals.tests ?? "none yet" },
     { k: "ci", v: p.signals.ci ? "GitHub Actions ✓" : "not set up" },
   ];
+  const shots = SHOTS.map((m) => ({ m, src: screenshotSrc(p.slug, m) }));
   return (
     <>
       <PointerFX />
@@ -94,11 +96,18 @@ export function CaseStudy({ project: p, index, next }: Props) {
 
         <section className="case__shots" aria-label="Screenshots">
           <div className="phones" aria-hidden="true">
-            {(["m1", "m2", "m3"] as const).map((m, i) => (
-              <PhoneMockup key={m} className={`phones__p phones__p--${i}`} alt={`${p.title} screen ${i + 1}`} label={`${p.slug}/${m}`} />
+            {shots.map(({ m, src }, i) => (
+              <PhoneMockup
+                key={m}
+                src={src}
+                sizes="(max-width: 768px) 30vw, 260px"
+                className={`phones__p phones__p--${i}`}
+                alt={`${p.title} screen ${i + 1}`}
+                label={`${p.slug}/${m}`}
+              />
             ))}
           </div>
-          <p className="label case__shots-note">Screenshots are captured once the live demo is deployed.</p>
+          {shots.some((s) => !s.src) && <p className="label case__shots-note">Screenshots are captured once the live demo is deployed.</p>}
         </section>
 
         <Link href={`/work/${next.slug}`} className="case__next" data-cursor="view">

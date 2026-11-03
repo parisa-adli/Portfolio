@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { Project } from "@/content/projects";
 import { PhoneMockup } from "./PhoneMockup";
+import { SHOTS, screenshotSrc } from "@/lib/screenshots";
 
 type Props = { project: Project; index: number; variant: "featured" | "compact"; flip?: boolean };
 
@@ -26,8 +27,8 @@ export function ProjectCard({ project: p, index, variant, flip }: Props) {
       </div>
       <div className="pcard__visual" aria-hidden="true">
         <div className="phones">
-          {(["m1", "m2", "m3"] as const).map((m, i) => (
-            <PhoneMockup key={m} className={`phones__p phones__p--${i}`} alt={`${p.title} screen ${i + 1}`} label={`${p.slug}/${m}`} />
+          {SHOTS.map((m, i) => (
+            <PhoneMockup key={m} src={screenshotSrc(p.slug, m)} className={`phones__p phones__p--${i}`} alt={`${p.title} screen ${i + 1}`} label={`${p.slug}/${m}`} />
           ))}
         </div>
       </div>

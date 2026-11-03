@@ -12,7 +12,7 @@ What is still open after the owner review on 2026-11-03. Resolved decisions are 
 
 ## Before launch (Claude)
 
-- [ ] **Project screenshots:** 0 of 15. The cards show placeholder "screenshot pending" frames. Capture all of them at 390×844 @2x before launch: the featured ones from the live demos, Stays and Blog App locally.
+- [ ] **Project screenshots:** 3 of 15 (inventory-manager m1–m3, but at 251×546, below spec). Save each one as `public/projects/{slug}/m1|m2|m3.{webp,avif,png,jpg,jpeg}` at 390×844 @2x. They are picked up automatically at build time (`lib/screenshots.ts`). Missing ones keep the "screenshot pending" frame. Capture the featured ones from the live demos, and Stays and Blog App locally.
 - [ ] **Commit counts** (`signals.commits`) are from 2026-11-03. Re-run `node scripts/fetch-github.mjs` before launch.
 - [ ] **Lighthouse scores** for the Proof block need the live demo URLs.
 - [ ] Set `RESEND_API_KEY` in Vercel. Until then, the contact form only logs messages, yet it still tells the visitor "sent ✓".

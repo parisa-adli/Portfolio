@@ -97,8 +97,8 @@ export const projects: Project[] = [
     featured: true,
   },
   {
-    slug: "blog-app",
-    repo: "Next.js-blog-app",
+    slug: "rblog",
+    repo: "Next.js-qrblog",
     title: "Blog App",
     tagline: "Publishing, with an admin desk.",
     description:
@@ -113,7 +113,7 @@ export const projects: Project[] = [
     status: "source only",
     role: "Solo — frontend",
     liveUrl: null,
-    sourceUrl: gh("Next.js-blog-app"),
+    sourceUrl: gh("Next.js-qrblog"),
     challenge: "Blog posts need to rank in search, but the admin side is a heavy, interactive app.",
     solution:
       "Public pages are server-rendered with dynamic routes for SEO; the admin dashboard runs on React Query with shared hooks and paginated tables.",

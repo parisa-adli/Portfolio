@@ -8,7 +8,7 @@ export function PhoneMockup({ src, alt, label, className = "", sizes = "200px" }
     <div className={`phone ${className}`}>
       <div className="phone__screen">
         {src ? (
-          <Image src={src} alt={alt} fill sizes={sizes} className="phone__img" />
+          <Image src={src} alt={alt} fill sizes={sizes} unoptimized className="phone__img" />
         ) : (
           <div className="phone__pending" role="img" aria-label={`${alt}: screenshot pending`}>
             <span className="phone__notch" aria-hidden="true" />

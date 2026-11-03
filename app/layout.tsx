@@ -30,7 +30,8 @@ const personLd = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body>
+      {/* extensions (e.g. ColorZilla) inject attributes on body before hydration */}
+      <body suppressHydrationWarning>
         <ThemeA>
           <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(personLd) }} />
           {children}

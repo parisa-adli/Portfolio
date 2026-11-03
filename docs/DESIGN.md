@@ -37,7 +37,7 @@ Known facts (verified Nov 2026, re-check):
 - README stack badges: CSS3, JavaScript, TypeScript, React, Next.js, Node.js, MongoDB, GraphQL, Postman, Tailwind CSS
 - ~26 public repos. **Pinned:**
   1. `Next.js-next-shop-panel` — e-commerce platform + admin panel, Next.js (SSR/SSG, API routes), Tailwind custom theme, custom hooks, deployed on Vercel. 80+ commits.
-  2. `Next.js-blog-app` — blog application, Next.js
+  2. `Next.js-qrblog` — blog application, Next.js
   3. `React-freelancer-app` — freelancer marketplace app, React
   4. `React-Booking-Hotel_App` — hotel booking app, React
   5. `React-rick-and-morty-app` — Rick & Morty API explorer, React
