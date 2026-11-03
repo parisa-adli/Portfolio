@@ -15,7 +15,7 @@ What is still open after the owner review on 2026-11-03. Resolved decisions are 
 - [ ] **Project screenshots:** 3 of 15 (inventory-manager m1–m3, but at 251×546, below spec). Save each one as `public/projects/{slug}/m1|m2|m3.{webp,avif,png,jpg,jpeg}` at 390×844 @2x. They are picked up automatically at build time (`lib/screenshots.ts`). Missing ones keep the "screenshot pending" frame. Capture the featured ones from the live demos, and Stays and Blog App locally.
 - [ ] **Commit counts** (`signals.commits`) are from 2026-11-03. Re-run `node scripts/fetch-github.mjs` before launch.
 - [ ] **Lighthouse scores** for the Proof block need the live demo URLs.
-- [ ] Set `RESEND_API_KEY` in Vercel. Until then, the contact form only logs messages, yet it still tells the visitor "sent ✓".
+- [ ] Set `RESEND_API_KEY` in Vercel. Until then, the contact form shows an error in production (it only logs in dev).
 - [ ] Set `RESEND_FROM` to an address on a domain verified in Resend. The fallback, `onboarding@resend.dev`, only delivers to the Resend account owner.
 - [ ] Set `NEXT_PUBLIC_SITE_URL` (the production origin) in Vercel. Without it, canonical URLs, the OG image, `sitemap.xml`, `robots.txt` and the JSON-LD all point to `http://localhost:3000`.
 - [ ] **Real Safari / iOS check.** Only Playwright's Windows WebKit has been tested. Confirm the Geist heading weight (Windows WebKit draws it too thin), the keyboard and Lenis on a real iPhone and a Mac.

@@ -6,6 +6,7 @@ import type { ContactState } from "@/lib/contact";
 const FIELDS = [
   { name: "name", label: "name", type: "text", autoComplete: "name" },
   { name: "email", label: "email", type: "email", autoComplete: "email" },
+  { name: "subject", label: "subject", type: "text", autoComplete: "off" },
 ] as const;
 
 // Terminal-styled "transmission" form (§5.7). Works without JS (server action), errors inline.

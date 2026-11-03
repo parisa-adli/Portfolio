@@ -213,7 +213,7 @@ spacing scale: 4 8 12 16 24 32 48 64 96 128 160
 
 - Huge headline: _"Got an idea worth building?"_ with an animated underline.
 - Click-to-copy email button (toast "copied ✓"), LinkedIn, GitHub, Instagram. No Cal link.
-- Simple form (name, email, message) styled as a terminal "transmission". Backend: **Next.js server action** → Zod validation (inline messages) → honeypot field + simple per-IP rate limit → email via **Resend** to `parisa.adli.dev@gmail.com`. Until `RESEND_API_KEY` is set, the action logs instead of sending. No CAPTCHA.
+- Simple form (name, email, subject, message) styled as a terminal "transmission". Backend: **Next.js server action** → Zod validation (inline messages) → honeypot field + simple per-IP rate limit → email via **Resend** to `parisa.adli.dev@gmail.com`. Until `RESEND_API_KEY` is set, the action logs instead of sending. No CAPTCHA.
 
 ### 5.8 Footer = IDE status bar
 

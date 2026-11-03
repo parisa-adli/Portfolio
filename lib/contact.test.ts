@@ -3,9 +3,9 @@ import assert from "node:assert/strict";
 import { allow, validateContact } from "./contact.ts";
 
 test("validates fields with inline messages", () => {
-  const bad = validateContact({ name: "P", email: "nope", message: "short" });
-  assert.ok(bad.fieldErrors?.name && bad.fieldErrors.email && bad.fieldErrors.message);
-  const good = validateContact({ name: "Parisa", email: "a@b.co", message: "Let's build a dashboard." });
+  const bad = validateContact({ name: "P", email: "nope", subject: "x\nBcc: evil", message: "short" });
+  assert.ok(bad.fieldErrors?.name && bad.fieldErrors.email && bad.fieldErrors.subject && bad.fieldErrors.message);
+  const good = validateContact({ name: "Parisa", email: "a@b.co", subject: "Dashboard", message: "Let's build a dashboard." });
   assert.equal(good.data?.name, "Parisa");
 });
 

@@ -31,7 +31,7 @@
 
 ## Known bugs / risks
 - The INP approximation at 4× CPU on desktop is ~200–216 ms on the skills-tab click (`SkillsFilter`), and mobile taps measure 136–144 ms. Re-measure on an idle machine; if it's still over, the fix belongs in `SkillsFilter`.
-- The contact form says "sent ✓" without `RESEND_API_KEY`; it only logs. The rate limit is in memory, per server instance.
+- Without `RESEND_API_KEY` the contact form errors in production and only logs in dev. The rate limit is in memory, per server instance.
 - `/work` CLS is 0.031 (passes, but isn't zero). It's probably the font swap in `.case__grid`.
 - Windows WebKit draws Geist headings too thin. Not checked in real Safari.
 - The old `/a` URL now returns 404. Add a redirect if it was ever shared.
