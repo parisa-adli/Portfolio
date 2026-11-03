@@ -128,7 +128,7 @@ spacing scale: 4 8 12 16 24 32 48 64 96 128 160
 - **Interactions:**
   - Physical typing: listening to `keydown/keyup` presses the matching virtual key (translateY 3–4px, shadow shrink, 60ms).
   - Click/tap on keys presses them too.
-  - Short **mechanical click sound** per key (Web Audio, 2–3 sampled variants with random pitch ±3%, preloaded). **Muted until the visitor presses the 🔊 toggle**; nothing unmutes automatically.
+  - Short **linear-switch sound** per key, tuned toward a heavy linear (Cherry MX Black-like, ~60 g, no click jacket; changed 2026-11-03 from the earlier clicky tick). Synthesised with Web Audio, no sample files: press = dense plastic clack (band-passed noise ~1.6–2.4 kHz, ~20 ms) + low body (110–140 Hz, ~50 ms), 4 variants picked at random, never the same twice in a row; heavy keys (space, enter, backspace) = deeper body (~92–100 Hz), slightly longer, plus a faint stabiliser rattle ~8–12 ms after; release (upstroke, only for a key that was pressed) = higher, shorter, ~40% volume. ±3% random pitch, modest master gain into a soft limiter (DynamicsCompressorNode). Buffers are created lazily right after the toggle paints. **Muted until the visitor presses the 🔊 toggle**; nothing unmutes automatically.
   - Accent keys (e.g. `Esc`, `Enter`, `Space`) are **tech-stack keycaps**: icons for React, Next.js, TypeScript, Tailwind, Node, MongoDB (no GraphQL). Hovering/pressing one shows a small tooltip with a project count from `projects.ts` (`React — 5 projects`), never years.
   - Typing a secret word (`hire`, `next`, `react`) triggers an easter egg: keys light up in a wave and a toast appears ("Let's build something → contact").
   - Subtle idle animation: keyboard floats ±6px, cursor-based parallax tilt (max 6°).
@@ -164,7 +164,8 @@ spacing scale: 4 8 12 16 24 32 48 64 96 128 160
 
 ### 5.4 About (ref: portfolio-84ka terminal card)
 - Left: the owner's bio from `profile.about` (4 short paragraphs, verbatim), with faint line-number gutter.
-- Right: a small **photo window** (`parisa.jpg`, ~200px, same title-bar-with-dots frame as the terminal; never a centred round avatar, never in the Hero) above the **terminal card**. Mobile: bio, then photo, then terminal. The photo comes from `profile.photo`; if the field or `public/parisa.jpg` is missing, nothing renders (owner decision 2026-11-03).
+- Right: the **terminal card**, with the owner's photo as a **plain circular badge** on its top-right corner (owner decision 2026-11-03; replaces the earlier framed photo window). The photo sits outside the window frame (no title bar, dots or filename), about half above the card, ~112px desktop / ~80px mobile, no ring; it must not cover the title-bar label or terminal text, or be clipped. On `(hover: hover)` devices hovering adds a subtle soft glow in `--accent-0` (same token as `.btn--primary`) and scales the photo to ~1.15 (image `sizes` set to the scaled size so it stays sharp; badge inset 12px from the card edge so the glow is not clipped by the section), ~250ms; reduced motion shows the glow only, with no scale and no transition. Not a link. Never in the Hero, never a centred avatar. Mobile: bio, then the terminal with the badge on the same corner. The photo comes from `profile.photo`; if the field or `public/parisa.jpg` is missing, nothing renders.
+- **Window control dots** (owner decision 2026-11-03): every `.editor__dots` (terminal, skills editor, contact form) uses close / minimise / maximise colours `#ff5f57` / `#febc2e` / `#28c840` via `--dot-close`, `--dot-min`, `--dot-max`, with a faint 1px darker inner border. Decorative (`aria-hidden`), no hover glyphs.
 - **Terminal card** (owner decision 2026-11-03): data-driven from `profile.terminal`. Commands type in on scroll, output appears at once, whole sequence capped at ~3.4 s; full text is in the DOM from the start; reduced motion shows it instantly; caret on the final empty prompt.
   ```
   $ whoami
@@ -184,7 +185,7 @@ spacing scale: 4 8 12 16 24 32 48 64 96 128 160
 - **No stat counters or numbers** next to the bio (owner decision 2026-11-03).
 
 ### 5.5 Experience (ref: phyominthein / stackbyprakhar "mission log", toned down)
-- No paid roles: the timeline is a git log of **independent projects** from `content/experience.ts`, newest first. Each project is a commit (dot + hash-like mono id, title, `YYYY-MM` repo-creation date, one line, link to `/work/[slug]`) on an `independent-projects` branch (2024 – present), which merges down to Education (B.Sc. Software Engineering, 2019) as a smaller entry. No certifications. Line draws itself on scroll (ScrollTrigger scrub on `scaleY`).
+- No paid roles: the timeline is a git log of **independent projects** from `content/experience.ts`, newest first. Each project is a commit (dot + hash-like mono id, title, `YYYY-MM` repo-creation date, one line, link to `/work/[slug]`) on an `independent-projects` branch (2024 – present), which merges down to Education (B.Sc. Software Engineering, 2019) as a smaller entry; the school name is not shown anywhere on the site, JSON-LD included (owner decision 2026-11-03). No certifications. Line draws itself on scroll (ScrollTrigger scrub on `scaleY`).
 
 ### 5.6 GitHub activity — removed (owner decision 2026-11-03)
 

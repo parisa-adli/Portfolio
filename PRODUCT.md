@@ -57,7 +57,7 @@ Three prototypes (A Editor, B Mechanical, C Editorial) share the same content an
 - `docs/cv.pdf`: the LinkedIn export. It is git-ignored and must never be committed. Note that its WorkBridge entry is wrong.
 - `content/raw/github.json`: 27 public repos, with commit counts and stacks, fetched 2026-11-03.
 - Six selected projects are in `content/projects.ts`. The most mature is the inventory app: full-stack TypeScript, Playwright E2E tests and GitHub Actions CI.
-- Education: Bachelor's in Software Engineering, Iran's National University of Skill (2019).
+- Education: Bachelor's in Software Engineering (2019). The school name is not shown on the site (owner decision 2026-11-03).
 - **Missing; do not fabricate:** live deployment URLs, project screenshots, work-experience entries, testimonials, Lighthouse scores and client names. There are also no certifications.
 
 ## Product Principles

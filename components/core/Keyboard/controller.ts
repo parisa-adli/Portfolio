@@ -1,7 +1,7 @@
 // Keyboard behaviour (§5.1), attached to the server-rendered markup after idle. Plain DOM, no React:
 // one delegated pointer listener, one window key listener, transforms only.
 import { CODE_ALIAS } from "./layout";
-import { click } from "./sound";
+import { keyDownSound, keyUpSound } from "./sound";
 import { toast } from "../Toast";
 import { onFrame, richPointer } from "@/lib/pointer";
 
@@ -19,11 +19,15 @@ export function initKeyboard(kb: HTMLElement) {
   let waving = false;
 
   const press = (el: HTMLElement) => {
-    if (!el.classList.contains("is-down")) click(HEAVY.has(el.dataset.code!));
+    if (!el.classList.contains("is-down")) keyDownSound(HEAVY.has(el.dataset.code!));
     el.classList.add("is-down");
     if (el.dataset.tip) showTip(el);
   };
-  const release = (el: HTMLElement | null) => el?.classList.remove("is-down");
+  const release = (el: HTMLElement | null) => {
+    if (!el?.classList.contains("is-down")) return; // upstroke sound only for a key that was pressed
+    keyUpSound();
+    el.classList.remove("is-down");
+  };
   const tap = (el: HTMLElement) => {
     press(el);
     setTimeout(() => release(el), 90);
@@ -80,7 +84,7 @@ export function initKeyboard(kb: HTMLElement) {
     const el = (e.target as Element).closest<HTMLElement>(".key--tech");
     if (el) showTip(el);
   };
-  // Enter/Space on a focused tech key = a click; give it the press feedback too.
+  // Enter/Space on a focused tech key fires a click event; give it the press feedback too.
   const onClick = (e: MouseEvent) => {
     const el = (e.target as Element).closest<HTMLElement>(".key");
     if (el && e.detail === 0) tap(el);

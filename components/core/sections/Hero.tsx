@@ -9,7 +9,9 @@ export function Hero() {
   return (
     <section id="top" className="hero container-x" aria-labelledby="hero-title">
       <div className="hero__text">
-        <p className="label hero__eyebrow">Full-Stack Developer · React / Next.js / Node</p>
+        <p className="label hero__eyebrow">
+          Full-Stack Developer · React / Next.js / Node / Express
+        </p>
         <h1 id="hero-title" className="hero__title">
           <span className="hero__name display">{profile.name}</span>
           <span className="hero__role">
@@ -30,7 +32,14 @@ export function Hero() {
           <ul className="hero__social" aria-label="Profiles">
             {profile.links.map((l) => (
               <li key={l.label}>
-                <a href={l.href} className="icon-link" aria-label={l.label} target="_blank" rel="noopener noreferrer" data-cursor="open">
+                <a
+                  href={l.href}
+                  className="icon-link"
+                  aria-label={l.label}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  data-cursor="open"
+                >
                   <Icon name={l.label} size={20} />
                 </a>
               </li>

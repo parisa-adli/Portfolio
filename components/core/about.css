@@ -1,72 +1,330 @@
 /* â”€â”€ About (Â§5.4) â”€â”€ */
-.about { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: var(--gutter); align-items: start; }
-.about__bio { grid-column: 1 / span 7; position: relative; padding-left: 60px; --fs: clamp(18px, 1.6vw, 21px); --lh: calc(var(--fs) * 1.65); font-size: var(--fs); }
+.about {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: var(--gutter);
+  align-items: start;
+}
+.about__bio {
+  grid-column: 1 / span 7;
+  position: relative;
+  padding-left: 60px;
+  --fs: clamp(18px, 1.6vw, 21px);
+  --lh: calc(var(--fs) * 1.65);
+  font-size: var(--fs);
+}
 .about__gutter {
-  position: absolute; left: 0; top: 0; bottom: 0; width: 40px; box-sizing: border-box;
-  margin: 0; overflow: hidden; text-align: right; user-select: none;
-  font-family: var(--font-mono-family), monospace; font-size: 12px; color: var(--text-2); opacity: 0.6;
-  line-height: var(--lh); padding-top: 0;
-  border-right: 1px solid var(--line); padding-right: 12px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 40px;
+  box-sizing: border-box;
+  margin: 0;
+  overflow: hidden;
+  text-align: right;
+  user-select: none;
+  font-family: var(--font-mono-family), monospace;
+  font-size: 12px;
+  color: var(--text-2);
+  opacity: 0.6;
+  line-height: var(--lh);
+  padding-top: 0;
+  border-right: 1px solid var(--line);
+  padding-right: 12px;
   white-space: pre;
 }
 /* decorative line numbers drawn by CSS */
-.about__gutter::before { content: "1\A 2\A 3\A 4\A 5\A 6\A 7\A 8\A 9\A 10\A 11\A 12\A 13\A 14\A 15\A 16\A 17\A 18\A 19\A 20\A 21\A 22\A 23\A 24\A 25\A 26\A 27\A 28\A 29\A 30\A 31\A 32\A 33\A 34\A 35\A 36\A 37\A 38\A 39\A 40\A 41\A 42\A 43\A 44\A 45\A 46\A 47\A 48\A 49\A 50\A 51\A 52\A 53\A 54\A 55\A 56\A 57\A 58\A 59\A 60"; }
-.about__text p { margin: 0 0 var(--lh); line-height: var(--lh); color: var(--text-1); max-width: 56ch; text-wrap: pretty; }
-.about__text p:first-child { color: var(--text-0); }
-.about__text p:last-child { margin-bottom: 0; }
-.about__side { grid-column: 9 / span 4; position: sticky; top: 96px; display: grid; gap: 24px; justify-items: start; }
-.term { width: 100%; border: 1px solid var(--line); border-radius: var(--radius-md); background: var(--bg-1); overflow: hidden; }
-.about__photo { width: 200px; margin: 0; }
-.about__img { position: relative; aspect-ratio: 1; }
-.about__img img { object-fit: cover; object-position: 50% 30%; }
-.term__bar { display: flex; align-items: center; gap: 12px; padding: 12px 16px; border-bottom: 1px solid var(--line); }
-.term__body { padding: 20px; display: grid; gap: 8px; font-family: var(--font-mono-family), monospace; font-size: 13px; line-height: 1.6; }
-.term__line { margin: 0; white-space: pre-wrap; }
-.term__prompt { color: var(--accent-1); }
-.term__path { color: var(--accent-0); }
-.term__cmd { width: fit-content; max-width: 100%; }
-.term__out { color: var(--text-1); display: flex; flex-wrap: wrap; column-gap: 2ch; }
-.term__row { flex-basis: 100%; display: grid; grid-template-columns: 8ch minmax(0, 1fr); }
-.term__row > :only-child { grid-column: 1 / -1; }
-.term__link { display: inline-block; padding-block: 12px; margin-block: -12px; color: var(--text-0); text-decoration: underline; text-decoration-color: var(--line-strong); text-underline-offset: 3px; transition: color 200ms, text-decoration-color 200ms; }
-.term__link:hover, .term__link:focus-visible { color: var(--accent-1); text-decoration-color: currentColor; }
-.term.is-armed .term__line { clip-path: inset(0 100% 0 0); }
-.term.is-typed .term__line { animation: type-line var(--t) steps(var(--n), end) var(--d) forwards; }
-@keyframes type-line { to { clip-path: inset(0 0 0 0); } }
-.term.is-done .term__line { animation: none; clip-path: none; }
-.term.is-armed:not(.is-done) .caret { animation: none; }
-@media (prefers-reduced-motion: reduce) { .term.is-armed .term__line { clip-path: none; } }
+.about__gutter::before {
+  content: "1\A 2\A 3\A 4\A 5\A 6\A 7\A 8\A 9\A 10\A 11\A 12\A 13\A 14\A 15\A 16\A 17\A 18\A 19\A 20\A 21\A 22\A 23\A 24\A 25\A 26\A 27\A 28\A 29\A 30\A 31\A 32\A 33\A 34\A 35\A 36\A 37\A 38\A 39\A 40\A 41\A 42\A 43\A 44\A 45\A 46\A 47\A 48\A 49\A 50\A 51\A 52\A 53\A 54\A 55\A 56\A 57\A 58\A 59\A 60";
+}
+.about__text p {
+  margin: 0 0 var(--lh);
+  line-height: var(--lh);
+  color: var(--text-1);
+  max-width: 56ch;
+  text-wrap: pretty;
+}
+.about__text p:first-child {
+  color: var(--text-0);
+}
+.about__text p:last-child {
+  margin-bottom: 0;
+}
+/* Wrapper owns grid placement + sticky so the photo can overhang .term (which clips). Extra top = the photo's overhang. */
+.about__side {
+  grid-column: 9 / span 4;
+  position: sticky;
+  top: 152px;
+}
+.term {
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  background: var(--bg-1);
+  overflow: hidden;
+}
+/* Owner decision 2026-11-03: round badge on the terminal's top-right corner, half above it; stays clear of the label.
+   right: 12px keeps the scaled photo + glow inside the section, which clips paint (content-visibility: auto). */
+.about__photo {
+  position: absolute;
+  top: -56px;
+  right: 12px;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: 50% 30%;
+}
+@media (hover: hover) {
+  .about__photo {
+    transition:
+      box-shadow 250ms var(--ease-out),
+      transform 250ms var(--ease-out);
+  }
+  .about__photo:hover {
+    box-shadow: 0 0 24px 2px
+      color-mix(in srgb, var(--accent-0) 45%, transparent);
+    transform: scale(1.15);
+  }
+}
+/* Reduced motion: glow only, no scale, no transition. */
+@media (prefers-reduced-motion: reduce) {
+  .about__photo {
+    transition: none;
+  }
+  .about__photo:hover {
+    transform: none;
+  }
+}
+.term__bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--line);
+}
+.term__body {
+  padding: 20px;
+  display: grid;
+  gap: 8px;
+  font-family: var(--font-mono-family), monospace;
+  font-size: 13px;
+  line-height: 1.6;
+}
+.term__line {
+  margin: 0;
+  white-space: pre-wrap;
+}
+.term__prompt {
+  color: var(--accent-1);
+}
+.term__path {
+  color: var(--accent-0);
+}
+.term__cmd {
+  width: fit-content;
+  max-width: 100%;
+}
+.term__out {
+  color: var(--text-1);
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 2ch;
+}
+.term__row {
+  flex-basis: 100%;
+  display: grid;
+  grid-template-columns: 8ch minmax(0, 1fr);
+}
+.term__row > :only-child {
+  grid-column: 1 / -1;
+}
+.term__link {
+  display: inline-block;
+  padding-block: 12px;
+  margin-block: -12px;
+  color: var(--text-0);
+  text-decoration: underline;
+  text-decoration-color: var(--line-strong);
+  text-underline-offset: 3px;
+  transition:
+    color 200ms,
+    text-decoration-color 200ms;
+}
+.term__link:hover,
+.term__link:focus-visible {
+  color: var(--accent-1);
+  text-decoration-color: currentColor;
+}
+.term.is-armed .term__line {
+  clip-path: inset(0 100% 0 0);
+}
+.term.is-typed .term__line {
+  animation: type-line var(--t) steps(var(--n), end) var(--d) forwards;
+}
+@keyframes type-line {
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+.term.is-done .term__line {
+  animation: none;
+  clip-path: none;
+}
+.term.is-armed:not(.is-done) .caret {
+  animation: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .term.is-armed .term__line {
+    clip-path: none;
+  }
+}
 
 /* â”€â”€ Experience: git log (Â§5.5) â”€â”€ */
-.gitlog { max-width: 820px; --lane: 28px; }
-.gitlog__branch { display: inline-flex; gap: 8px; padding: 6px 12px; margin: 0 0 32px; border: 1px solid var(--line-strong); border-radius: 999px; color: var(--accent-1); }
-.gitlog__range { color: var(--text-1); }
-.gitlog__lane { position: relative; padding-left: calc(var(--lane) + 40px); }
-.gitlog__line { position: absolute; left: var(--lane); top: 8px; bottom: 0; width: 2px; background: linear-gradient(var(--accent-0), var(--accent-1)); transform-origin: top; }
-.gitlog__list { list-style: none; margin: 0; padding: 0; display: grid; gap: 48px; }
-.commit { position: relative; display: grid; gap: 6px; }
-.commit__dot {
-  position: absolute; left: calc(-40px - 6px + 1px); top: 4px; width: 12px; height: 12px; border-radius: 50%;
-  background: var(--bg-0); border: 2px solid var(--accent-1);
+.gitlog {
+  max-width: 820px;
+  --lane: 28px;
 }
-.commit__head { display: flex; gap: 16px; align-items: baseline; }
-.commit__hash { font-family: var(--font-mono-family), monospace; font-size: 13px; color: var(--accent-0); }
-.commit__title { margin: 0; font-size: clamp(22px, 2.4vw, 30px); font-weight: 600; letter-spacing: -0.02em; }
-.commit__link { display: inline-flex; gap: 10px; align-items: center; min-height: 44px; transition: color 200ms; }
-.commit__link span { transition: transform 300ms var(--ease-out); color: var(--text-2); }
-.commit__link:hover, .commit__link:focus-visible { color: var(--accent-1); }
-.commit__link:hover span, .commit__link:focus-visible span { transform: translateX(4px); color: inherit; }
-.commit__line { margin: 0; color: var(--text-1); max-width: 56ch; }
-.gitlog__merge { position: relative; padding-left: calc(8px + 40px); padding-top: 72px; }
-.gitlog__curve { position: absolute; left: calc(var(--lane) - 39px); top: 0; width: 48px; height: 72px; overflow: visible; }
-.gitlog__curve path { stroke: var(--accent-1); stroke-width: 2; vector-effect: non-scaling-stroke; }
-.commit--edu .commit__dot { left: calc(-40px - 5px + 1px); width: 10px; height: 10px; border-color: var(--text-1); }
-.commit--edu .commit__title { font-size: 20px; }
+.gitlog__branch {
+  display: inline-flex;
+  gap: 8px;
+  padding: 6px 12px;
+  margin: 0 0 32px;
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  color: var(--accent-1);
+}
+.gitlog__range {
+  color: var(--text-1);
+}
+.gitlog__lane {
+  position: relative;
+  padding-left: calc(var(--lane) + 40px);
+}
+.gitlog__line {
+  position: absolute;
+  left: var(--lane);
+  top: 8px;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(var(--accent-0), var(--accent-1));
+  transform-origin: top;
+}
+.gitlog__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 48px;
+}
+.commit {
+  position: relative;
+  display: grid;
+  gap: 6px;
+}
+.commit__dot {
+  position: absolute;
+  left: calc(-40px - 6px + 1px);
+  top: 4px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--bg-0);
+  border: 2px solid var(--accent-1);
+}
+.commit__head {
+  display: flex;
+  gap: 16px;
+  align-items: baseline;
+}
+.commit__hash {
+  font-family: var(--font-mono-family), monospace;
+  font-size: 13px;
+  color: var(--accent-0);
+}
+.commit__title {
+  margin: 0;
+  font-size: clamp(22px, 2.4vw, 30px);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+.commit__link {
+  display: inline-flex;
+  gap: 10px;
+  align-items: center;
+  min-height: 44px;
+  transition: color 200ms;
+}
+.commit__link span {
+  transition: transform 300ms var(--ease-out);
+  color: var(--text-2);
+}
+.commit__link:hover,
+.commit__link:focus-visible {
+  color: var(--accent-1);
+}
+.commit__link:hover span,
+.commit__link:focus-visible span {
+  transform: translateX(4px);
+  color: inherit;
+}
+.commit__line {
+  margin: 0;
+  color: var(--text-1);
+  max-width: 56ch;
+}
+.gitlog__merge {
+  position: relative;
+  padding-left: calc(8px + 40px);
+  padding-top: 72px;
+}
+.gitlog__curve {
+  position: absolute;
+  left: calc(var(--lane) - 39px);
+  top: 0;
+  width: 48px;
+  height: 72px;
+  overflow: visible;
+}
+.gitlog__curve path {
+  stroke: var(--accent-1);
+  stroke-width: 2;
+  vector-effect: non-scaling-stroke;
+}
+.commit--edu .commit__dot {
+  left: calc(-40px - 5px + 1px);
+  width: 10px;
+  height: 10px;
+  border-color: var(--text-1);
+}
+.commit--edu .commit__title {
+  font-size: 20px;
+}
 
 @media (max-width: 1023px) {
-  .about { grid-template-columns: minmax(0, 1fr); gap: 48px; }
-  .about__bio, .about__side { grid-column: 1 / -1; }
-  .about__side { position: static; }
-  .about__bio { padding-left: 44px; }
-  .about__gutter { width: 30px; padding-right: 8px; }
+  .about {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 48px;
+  }
+  .about__bio,
+  .about__side {
+    grid-column: 1 / -1;
+  }
+  .about__side {
+    position: relative;
+    top: auto;
+  }
+  .about__photo {
+    top: -40px;
+    width: 80px;
+    height: 80px;
+  }
+  .about__bio {
+    padding-left: 44px;
+  }
+  .about__gutter {
+    width: 30px;
+    padding-right: 8px;
+  }
 }

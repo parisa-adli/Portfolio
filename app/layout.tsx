@@ -25,7 +25,6 @@ const personLd = {
   email: `mailto:${profile.email}`,
   sameAs: profile.links.map((l) => l.href),
   knowsAbout: ["React", "Next.js", "TypeScript", "Node.js", "Express", "MongoDB"],
-  alumniOf: profile.education.map((e) => ({ "@type": "CollegeOrUniversity", name: e.school })),
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

@@ -5,7 +5,7 @@ import { profile } from "@/content/profile";
 import { SectionHeader } from "../SectionHeader";
 import { TerminalCard } from "../TerminalCard";
 
-// §5.4: bio verbatim with a faint line-number gutter, photo window + terminal card. No stats (owner decision).
+// §5.4: bio verbatim with a faint line-number gutter, terminal card with a round photo badge on its corner. No stats (owner decision).
 export function About() {
   const { photo, status } = profile;
   const showPhoto = photo && existsSync(join(process.cwd(), "public", photo.src));
@@ -23,20 +23,10 @@ export function About() {
           </div>
         </div>
         <div className="about__side">
-          {showPhoto && (
-            <figure className="term about__photo">
-              <div className="term__bar">
-                <span className="editor__dots" aria-hidden="true">
-                  <i /> <i /> <i />
-                </span>
-                <span className="label">{photo.src.split("/").pop()}</span>
-              </div>
-              <div className="about__img">
-                <Image src={photo.src} alt={photo.alt} fill sizes="200px" />
-              </div>
-            </figure>
-          )}
           <TerminalCard entries={entries} />
+          {showPhoto && (
+            <Image className="about__photo" src={photo.src} alt={photo.alt} width={112} height={112} sizes="(max-width: 1023px) 92px, 130px" />
+          )}
         </div>
       </div>
     </section>

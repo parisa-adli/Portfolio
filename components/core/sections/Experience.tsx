@@ -64,7 +64,7 @@ export function Experience() {
                 </time>
               </div>
               <h3 className="commit__title">{edu.title}</h3>
-              <p className="commit__line">{edu.line}</p>
+              {edu.line && <p className="commit__line">{edu.line}</p>}
             </div>
           </div>
         )}

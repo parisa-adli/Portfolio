@@ -26,3 +26,5 @@
   --orbit-color-2: rgba(34, 211, 238, 0.25);
 }
 [data-theme="a"] { --danger: #fb7185; }
+/* Window control dots: close / minimise / maximise. */
+[data-theme="a"] { --dot-close: #ff5f57; --dot-min: #febc2e; --dot-max: #28c840; }

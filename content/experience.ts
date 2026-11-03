@@ -6,7 +6,7 @@ export type ExperienceEntry = {
   kind: "project" | "branch" | "education";
   title: string;
   date: string; // "YYYY-MM", "YYYY" or a range for the branch entry
-  line: string;
+  line?: string;
   slug?: string; // links to /work/[slug]
 };
 
@@ -22,6 +22,6 @@ export const experience: ExperienceEntry[] = [
   { kind: "project", title: "Stays", date: "2024-11", slug: "stays",
     line: "URL-driven search state, list + map view." },
   { kind: "branch", title: "independent-projects", date: "2024 – present", line: "Independent projects" },
-  { kind: "education", title: "B.Sc. Software Engineering", date: "2019",
-    line: "Iran's National University of Skill" },
+  // School name left off the site (owner decision 2026-11-03).
+  { kind: "education", title: "B.Sc. Software Engineering", date: "2019" },
 ];
