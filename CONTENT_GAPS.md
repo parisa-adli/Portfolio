@@ -17,4 +17,4 @@ What is still open after the owner review on 2026-11-03. Resolved decisions are 
 - [ ] Set `RESEND_API_KEY` in Vercel. Until then, the contact form only logs messages, yet it still tells the visitor "sent ✓".
 - [ ] Set `RESEND_FROM` to an address on a domain verified in Resend. The fallback, `onboarding@resend.dev`, only delivers to the Resend account owner.
 - [ ] Set `NEXT_PUBLIC_SITE_URL` (the production origin) in Vercel. Without it, canonical URLs, the OG image, `sitemap.xml`, `robots.txt` and the JSON-LD all point to `http://localhost:3000`.
-- [ ] **Real Safari / iOS check.** Only Playwright's Windows WebKit has been tested. Confirm the Geist heading weight (Windows WebKit draws it too thin), the keyboard and Lenis on a real iPhone and a Mac.
+- [ ] **Real Safari / iOS check.** Only Playwright's Windows WebKit has been tested. Confirm the Geist heading weight (Windows WebKit draws it too thin), the keyboard and Lenis on a real iPhone and a Mac. For B, also confirm the WebGL keyboard on a real phone GPU. After any change to `themes/b/Scene.tsx`, re-run `node scripts/kb-poster.mjs` so the poster still matches the live scene.

@@ -91,7 +91,7 @@
 }
 .kb3d__float { position: absolute; inset: 0; }
 .kb3d.is-alive .kb3d__float { animation: kb-float 6s ease-in-out infinite alternate; }
-/* Fades in (decorative): keeps the H1 the LCP element (ง5.1) instead of this image. */
+/* Fades in (decorative): keeps the H1 the LCP element (ยง5.1) instead of this image. */
 .kb3d__poster { object-fit: contain; transition: opacity 500ms var(--ease-out); animation: kb-poster 600ms var(--ease-out) both; }
 @keyframes kb-poster { from { opacity: 0; } }
 .kb3d.is-ready .kb3d__poster { opacity: 0; }
