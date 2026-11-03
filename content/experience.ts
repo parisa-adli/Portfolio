@@ -17,7 +17,7 @@ export const experience: ExperienceEntry[] = [
     line: "Payments and stock that holds under concurrent checkouts." },
   { kind: "project", title: "Inventory Manager", date: "2026-09", slug: "inventory-manager",
     line: "TypeScript monorepo, Telegram sign-in, Playwright E2E in CI." },
-  { kind: "project", title: "Blog App", date: "2025-01", slug: "rblog",
+  { kind: "project", title: "Rblog", date: "2025-01", slug: "rblog",
     line: "Server-rendered pages for SEO, React Query admin desk." },
   { kind: "project", title: "Stays", date: "2024-11", slug: "stays",
     line: "URL-driven search state, list + map view." },

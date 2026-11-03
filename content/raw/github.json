@@ -62,7 +62,7 @@
       "name": "inventory",
       "description": null,
       "homepage": null,
-      "html_url": "https://github.com/parisa-adli/inventory",
+      "html_url": "https://github.com/parisa-adli/inventory-manager",
       "fork": false,
       "archived": false,
       "topics": [],
@@ -98,10 +98,10 @@
       "readme": null
     },
     {
-      "name": "Next.js-qrblog",
+      "name": "rblog",
       "description": null,
       "homepage": null,
-      "html_url": "https://github.com/parisa-adli/Next.js-qrblog",
+      "html_url": "https://github.com/parisa-adli/Rblog",
       "fork": false,
       "archived": false,
       "topics": [],
