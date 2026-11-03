@@ -1,8 +1,8 @@
 import Link from "next/link";
 import type { Project } from "@/content/projects";
-import { PhoneMockup } from "./PhoneMockup";
+import { StackGallery } from "./StackGallery";
 import { PointerFX } from "./PointerFX";
-import { SHOTS, screenshotSrc } from "@/lib/screenshots";
+import { SHOTS, galleryImages, screenshotSrc } from "@/lib/screenshots";
 
 type Props = { project: Project; index: number; next: Project };
 
@@ -16,6 +16,7 @@ export function CaseStudy({ project: p, index, next }: Props) {
     { k: "ci", v: p.signals.ci ? "GitHub Actions ✓" : "not set up" },
   ];
   const shots = SHOTS.map((m) => ({ m, src: screenshotSrc(p.slug, m) }));
+  const gallery = galleryImages(p.slug, p.gallery);
   return (
     <>
       <PointerFX />
@@ -94,21 +95,36 @@ export function CaseStudy({ project: p, index, next }: Props) {
           </section>
         </div>
 
-        <section className="case__shots" aria-label="Screenshots">
-          <div className="phones" aria-hidden="true">
-            {shots.map(({ m, src }, i) => (
-              <PhoneMockup
-                key={m}
-                src={src}
-                sizes="(max-width: 768px) 30vw, 260px"
-                className={`phones__p phones__p--${i}`}
-                alt={`${p.title} screen ${i + 1}`}
-                label={`${p.slug}/${m}`}
-              />
-            ))}
-          </div>
+        <section className="case__shots" aria-labelledby="c-shots">
+          <header className="case__shots-head">
+            <span className="label case__h">06 — screens</span>
+            <h2 id="c-shots" className="h2">Mobile screens</h2>
+          </header>
+          <StackGallery
+            label={`${p.title} screenshots`}
+            items={shots.map(({ m, src }, i) => ({
+              src,
+              title: p.title,
+              category: `Screen ${String(i + 1).padStart(2, "0")}`,
+              detail: `${p.slug}/${m}`,
+            }))}
+          />
           {shots.some((s) => !s.src) && <p className="label case__shots-note">Screenshots are captured once the live demo is deployed.</p>}
         </section>
+
+        {gallery.length > 0 && (
+          <section className="case__shots" aria-labelledby="c-gallery">
+            <header className="case__shots-head">
+              <span className="label case__h">07 — gallery</span>
+              <h2 id="c-gallery" className="h2">Inside the project</h2>
+            </header>
+            <StackGallery
+              wide
+              label={`${p.title} gallery`}
+              items={gallery.map(({ src, caption }) => ({ src, title: caption, category: p.title }))}
+            />
+          </section>
+        )}
 
         <Link href={`/work/${next.slug}`} className="case__next" data-cursor="view">
           <span className="label">next project →</span>

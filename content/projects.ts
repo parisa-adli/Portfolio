@@ -19,6 +19,9 @@ export type Project = {
   solution: string;
   signals: { commits: number; tests: string | null; ci: boolean };
   featured: boolean;
+  // Content gallery, separate from the m1–m3 phone screenshots. Files live in /public/projects/{slug}/gallery/.
+  // Array order = display order; caption doubles as the image's alt text.
+  gallery?: { file: string; caption: string }[];
 };
 
 const gh = (repo: string) => `https://github.com/parisa-adli/${repo}`;
