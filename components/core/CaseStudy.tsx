@@ -3,11 +3,11 @@ import type { Project } from "@/content/projects";
 import { PhoneMockup } from "./PhoneMockup";
 import { PointerFX } from "./PointerFX";
 
-type Props = { project: Project; index: number; next: Project; base: string };
+type Props = { project: Project; index: number; next: Project };
 
 // §5.2 case study: header → challenge → solution → features → stack → proof → screenshots → next.
 // Built only from projects.ts fields; no outcome section (no metrics exist).
-export function CaseStudy({ project: p, index, next, base }: Props) {
+export function CaseStudy({ project: p, index, next }: Props) {
   const n = String(index + 1).padStart(2, "0");
   const proof = [
     { k: "commits", v: String(p.signals.commits) },
@@ -19,7 +19,7 @@ export function CaseStudy({ project: p, index, next, base }: Props) {
       <PointerFX />
       <main id="main" className="case container-x">
         <nav className="case__crumbs label" aria-label="Breadcrumb">
-          <Link href={`${base}#work`} className="text-link">
+          <Link href="/#work" className="text-link">
             ← ~/parisa/projects
           </Link>
           <span aria-hidden="true">/</span>
@@ -28,9 +28,7 @@ export function CaseStudy({ project: p, index, next, base }: Props) {
 
         <header className="case__header">
           <div className="pcard__meta">
-            <span className="label pcard__index" data-n={n}>
-              PROJECT_{n}
-            </span>
+            <span className="label pcard__index">PROJECT_{n}</span>
             <span className="chip">{p.category}</span>
             <span className="chip chip--status">{p.status}</span>
           </div>
@@ -103,7 +101,7 @@ export function CaseStudy({ project: p, index, next, base }: Props) {
           <p className="label case__shots-note">Screenshots are captured once the live demo is deployed.</p>
         </section>
 
-        <Link href={`${base}/work/${next.slug}`} className="case__next" data-cursor="view">
+        <Link href={`/work/${next.slug}`} className="case__next" data-cursor="view">
           <span className="label">next project →</span>
           <span className="h2">{next.title}</span>
         </Link>

@@ -1,4 +1,4 @@
-// 75% keyboard layout shared by every prototype's keyboard (§5.1): F-row, full alpha block,
+// 75% keyboard layout (§5.1): F-row, full alpha block,
 // right-edge 3×3 macro column (tech-stack art keys) and an inverted-T arrow cluster.
 // Units: 1u = one standard key. `code` matches KeyboardEvent.code so physical typing maps 1:1.
 

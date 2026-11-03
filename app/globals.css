@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-/* §3.1 shared tokens. Prototypes override accents only (themes/{a,b,c}/tokens.css). */
+/* §3.1 shared tokens. Accents live in themes/a/tokens.css. */
 :root {
   --bg-0: #07080a;
   --bg-1: #0d0f12;

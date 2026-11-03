@@ -4,7 +4,6 @@ import { profile } from "@/content/profile";
 import { NAV_ITEMS } from "./Nav";
 import { toast } from "./Toast";
 import { scroller, scrollToTarget } from "@/lib/motion";
-import { PROTOS } from "@/lib/site";
 
 type Item = { id: string; label: string; hint: string; run: () => void };
 
@@ -32,14 +31,6 @@ export function CommandMenu() {
       },
       ...profile.links.map((l) => ({ id: l.label, label: `Open ${l.label}`, hint: "↗", run: () => (close(), window.open(l.href, "_blank", "noopener")) })),
     ];
-    if (process.env.NODE_ENV === "development")
-      for (const p of PROTOS)
-        list.push({
-          id: `proto-${p}`,
-          label: `Switch prototype: ${p.toUpperCase()}`,
-          hint: "dev",
-          run: () => (close(), location.assign(location.pathname.replace(/^\/[abc]/, `/${p}`))),
-        });
     return list;
   }, []);
 

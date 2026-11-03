@@ -189,6 +189,8 @@ spacing scale: 4 8 12 16 24 32 48 64 96 128 160
 
 ## 6. The three prototypes
 
+> **Owner decision 2026-11-03: prototype A ("Editor") is the final site, served at `/`.** B and C were removed; they stay recoverable at git tag `all-prototypes`. The table below is kept as history.
+
 All three share §2 content, §4 systems and §5 section order. They differ in:
 
 | | **A — "Editor"** | **B — "Mechanical"** | **C — "Editorial"** |

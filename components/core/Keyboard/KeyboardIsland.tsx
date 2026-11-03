@@ -9,12 +9,10 @@ export function KeyboardIsland() {
   useEffect(() => {
     let cleanup: (() => void) | undefined;
     let cancelled = false;
-    // Only the CSS keyboard (A, C) uses the DOM controller; B's WebGL keyboard drives itself.
-    const kb = document.querySelector<HTMLElement>(".kb");
     const start = () =>
-      kb &&
       import("./controller").then(({ initKeyboard }) => {
-        if (!cancelled) cleanup = initKeyboard(kb);
+        const kb = document.querySelector<HTMLElement>(".kb");
+        if (kb && !cancelled) cleanup = initKeyboard(kb);
       });
     const idle = window.requestIdleCallback ?? ((cb: () => void) => setTimeout(cb, 200));
     const id = idle(start);

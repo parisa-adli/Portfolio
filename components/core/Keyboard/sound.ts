@@ -39,8 +39,6 @@ export function setSound(on: boolean) {
   );
 }
 
-export const soundOn = () => enabled;
-
 /** heavy = space/enter/backspace, uses the deeper variant. */
 export function click(heavy = false) {
   if (!enabled || !ctx) return;

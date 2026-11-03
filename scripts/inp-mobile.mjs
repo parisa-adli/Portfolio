@@ -5,7 +5,7 @@ const ctx = await b.newContext({ viewport: { width: 390, height: 844 }, isMobile
 const p = await ctx.newPage();
 const cdp = await ctx.newCDPSession(p);
 await p.addInitScript(() => { window.__ev = []; new PerformanceObserver((l) => l.getEntries().forEach((e) => e.interactionId && window.__ev.push(Math.round(e.duration)))).observe({ type: "event", durationThreshold: 16 }); });
-await p.goto((process.env.BASE_URL ?? "http://localhost:3000") + (process.env.P ?? "/a"), { waitUntil: "networkidle" });
+await p.goto((process.env.BASE_URL ?? "http://localhost:3000") + (process.env.P ?? "/"), { waitUntil: "networkidle" });
 await p.waitForTimeout(3000);
 await cdp.send("Emulation.setCPUThrottlingRate", { rate: 4 });
 const tapAt = async (sel) => {
@@ -19,7 +19,7 @@ const measure = async (label, fn) => {
   return Math.max(...out);
 };
 const res = [];
-res.push(await measure("tap keycap", () => tapAt('.key[data-code="KeyW"], .kb3d')));
+res.push(await measure("tap keycap", () => tapAt('.key[data-code="KeyW"]')));
 res.push(await measure("sound toggle", () => tapAt(".sound-toggle")));
 res.push(await measure("menu (cmd-k)", async () => { await tapAt(".nav__k"); await p.waitForTimeout(300); await tapAt(".cmdk-overlay"); }));
 await p.evaluate(() => document.querySelector("#skills").scrollIntoView());

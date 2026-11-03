@@ -92,13 +92,3 @@
 .cmdk__hint { font-family: var(--font-mono-family), monospace; font-size: 12px; color: var(--text-1); }
 .cmdk__empty { padding: 16px 12px; color: var(--text-1); }
 
-/* ── Dev prototype switcher ── */
-.proto-switch {
-  position: fixed; left: 16px; bottom: 16px; z-index: 60; display: flex; gap: 2px; padding: 4px;
-  border-radius: 999px; background: var(--bg-2); border: 1px solid var(--line-strong);
-  font-family: var(--font-mono-family), monospace; font-size: 12px;
-}
-.proto-switch__item { display: grid; transition: color 200ms, background-color 200ms; place-items: center; width: 32px; height: 32px; border-radius: 999px; color: var(--text-1); }
-.proto-switch__item.is-current { background: var(--accent-0); color: var(--accent-ink); }
-a.proto-switch__item:hover, a.proto-switch__item:focus-visible { color: var(--text-0); background: var(--line); }
-body:has(.proto-switch) .statusbar__inner { padding-left: 148px; }

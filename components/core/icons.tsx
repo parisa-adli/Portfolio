@@ -34,5 +34,3 @@ export function Icon({ name, size = 20, className }: { name: string; size?: numb
     </svg>
   );
 }
-
-export const brandColor = (name: string) => (ICONS[name] ? `#${ICONS[name].hex}` : undefined);

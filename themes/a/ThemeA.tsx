@@ -1,11 +1,19 @@
 import { GeistSans } from "geist/font/sans";
 import { GeistMono } from "geist/font/mono";
-import "@/components/core/styles";
+import "@/components/core/core.css";
+import "@/components/core/hero.css";
+import "@/components/core/Keyboard/keyboard.css";
+import "@/components/core/projects.css";
+import "@/components/core/case.css";
+import "@/components/core/marquee.css";
+import "@/components/core/skills.css";
+import "@/components/core/about.css";
+import "@/components/core/contact.css";
 import "./tokens.css";
 import "./a.css";
 import "./keyboard.css";
 
-// Prototype A shell: fonts + data-theme. Shared by /a and /a/work/[slug].
+// Site shell: fonts + data-theme, wrapping every page (root layout).
 export function ThemeA({ children }: { children: React.ReactNode }) {
   return (
     <div

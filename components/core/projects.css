@@ -1,4 +1,4 @@
-/* ── Projects (§5.2) — structure. A's glass + glow skin is in themes/a/a.css ── */
+/* ── Projects (§5.2) — structure. the glass + glow skin is in themes/a/a.css ── */
 .text-link {
   display: inline-flex; align-items: center; gap: 6px; min-height: 44px; color: var(--text-1);
   font-size: 15px; border-bottom: 1px solid transparent; transition: color 200ms, border-color 200ms;

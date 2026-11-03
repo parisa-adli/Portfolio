@@ -1,9 +1,9 @@
-// Usage: node scripts/shot.mjs [path=/a] [name=page] [--full] [--reduced]   env: EL=<selector> SCROLL=<selector> WIDTHS=1440,390
+// Usage: node scripts/shot.mjs [path=/] [name=page] [--full] [--reduced]   env: EL=<selector> SCROLL=<selector> WIDTHS=1440,390
 // Screenshots at 1440 and 390 px into /screenshots (git-ignored).
 import { chromium } from "@playwright/test";
 import { mkdirSync } from "node:fs";
 
-const [path = "/a", name = "page"] = process.argv.slice(2).filter((a) => !a.startsWith("--"));
+const [path = "/", name = "page"] = process.argv.slice(2).filter((a) => !a.startsWith("--"));
 const full = process.argv.includes("--full");
 const reduced = process.argv.includes("--reduced");
 const base = process.env.BASE_URL ?? "http://localhost:3000";

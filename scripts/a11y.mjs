@@ -3,7 +3,7 @@
 import { chromium } from "@playwright/test";
 import { readFileSync } from "node:fs";
 const axe = readFileSync("node_modules/axe-core/axe.min.js", "utf8");
-const path = process.argv[2] ?? "/a";
+const path = process.argv[2] ?? "/";
 const b = await chromium.launch();
 let total = 0;
 for (const [w, reduced] of [[390, false], [1440, false], [1440, true]]) {

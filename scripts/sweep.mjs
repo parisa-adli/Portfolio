@@ -1,7 +1,7 @@
 // Usage: node scripts/sweep.mjs [path=/a] — types "hire", shoots the hero keyboard mid-wave at 1440, then hovers the
 // first tech keycap (macro column, top-left) and reports the tooltip.
 import { chromium } from "@playwright/test";
-const path = process.argv[2] ?? "/a";
+const path = process.argv[2] ?? "/";
 const browser = await chromium.launch();
 const page = await browser.newPage({ viewport: { width: 1440, height: 900 } });
 const errors = [];
@@ -10,7 +10,7 @@ await page.goto((process.env.BASE_URL ?? "http://localhost:3000") + path, { wait
 await page.waitForTimeout(3000);
 await page.keyboard.type("hire", { delay: 60 });
 await page.waitForTimeout(450);
-const kb = page.locator(".kb, .kb3d").first();
+const kb = page.locator(".kb").first();
 await kb.screenshot({ path: "screenshots/sweep-1440.png" });
 const toast = await page.locator(".toast").count();
 const box = await kb.boundingBox();
