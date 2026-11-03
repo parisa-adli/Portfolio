@@ -46,6 +46,7 @@ export const profile: Profile = {
     { label: "GitHub", href: "https://github.com/parisa-adli" },
     { label: "LinkedIn", href: "https://www.linkedin.com/in/parisa-adli" },
     { label: "Instagram", href: "https://www.instagram.com/parisa.adli.dev" },
+    { label: "Telegram", href: "https://t.me/parisaadlidev" },
   ],
   education: [
     {

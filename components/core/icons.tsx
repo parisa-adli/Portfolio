@@ -2,7 +2,7 @@ import {
   siGithub, siInstagram, siReact, siNextdotjs, siTypescript, siTailwindcss, siNodedotjs, siMongodb,
   siHtml5, siCss, siJavascript, siShadcnui, siReactquery, siRedux, siReacthookform, siZod, siGsap,
   siExpress, siMongoose, siJsonwebtokens, siGit, siVercel, siGithubactions, siVitest, siPostman,
-  siFigma, siEslint, siClaude,
+  siFigma, siEslint, siClaude, siTelegram,
 } from "simple-icons";
 
 type SI = { path: string; hex: string; title: string };
@@ -16,7 +16,7 @@ const linkedin: SI = {
 
 // Skill / tech name (content/skills.ts, keycapStack, profile.links) → icon. Missing = mono glyph tile.
 export const ICONS: Record<string, SI> = {
-  GitHub: siGithub, Instagram: siInstagram, LinkedIn: linkedin,
+  GitHub: siGithub, Instagram: siInstagram, LinkedIn: linkedin, Telegram: siTelegram,
   React: siReact, "Next.js": siNextdotjs, TypeScript: siTypescript, "Tailwind CSS": siTailwindcss,
   "Node.js": siNodedotjs, MongoDB: siMongodb, HTML: siHtml5, CSS3: siCss, JavaScript: siJavascript,
   "shadcn/ui": siShadcnui, "TanStack Query": siReactquery, "Redux Toolkit": siRedux,
