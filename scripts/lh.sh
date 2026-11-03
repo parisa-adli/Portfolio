@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
-# Usage: scripts/lh.sh <path> <name>  (needs `next start` on :3000). Mobile Lighthouse via Playwright's Chromium.
+# Usage: scripts/lh.sh <path> <name>  (needs `next start` on :3000, or set BASE_URL). Mobile Lighthouse via Playwright's Chromium.
 export CHROME_PATH="${CHROME_PATH:-$(ls -d "$LOCALAPPDATA"/ms-playwright/chromium-*/chrome-win64/chrome.exe 2>/dev/null | head -1)}"
-npx lighthouse "http://localhost:3000$1" --form-factor=mobile --quiet --chrome-flags="--headless=new" --output=json --output-path="screenshots/lh/$2.json" >/dev/null 2>&1
+npx lighthouse "${BASE_URL:-http://localhost:3000}$1" --form-factor=mobile --quiet --chrome-flags="--headless=new" --output=json --output-path="screenshots/lh/$2.json" >/dev/null 2>&1
 node -e "
 const r=require('./screenshots/lh/$2.json');
 console.log(['performance','accessibility','best-practices','seo'].map(k=>k+' '+Math.round(r.categories[k].score*100)).join(' | '));
