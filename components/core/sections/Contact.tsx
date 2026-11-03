@@ -6,7 +6,7 @@ import { Icon } from "../icons";
 // §5.7: huge headline with animated underline, copy-email, socials, terminal form.
 export function Contact() {
   return (
-    <section id="contact" className="section container-x cv-auto contact" aria-labelledby="contact-title" data-inview>
+    <section id="contact" className="section container-x cv-auto contact" aria-labelledby="contact-title" data-inview suppressHydrationWarning>
       <div className="file-tab label">
         <span className="file-tab__idx">06</span>
         <span aria-hidden="true">—</span>

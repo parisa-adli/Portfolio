@@ -2,12 +2,12 @@ import Link from "next/link";
 import type { Project } from "@/content/projects";
 import { PhoneMockup } from "./PhoneMockup";
 
-type Props = { project: Project; index: number; variant: "featured" | "compact"; flip?: boolean };
+type Props = { project: Project; index: number; variant: "featured" | "compact"; flip?: boolean; base: string };
 
 const STATUS: Record<Project["status"], string> = { live: "● live", "in progress": "in progress", "source only": "source only" };
 
 // §5.2 card anatomy. The title link stretches over the whole card (→ /work/[slug]); Live/Source sit above it.
-export function ProjectCard({ project: p, index, variant, flip }: Props) {
+export function ProjectCard({ project: p, index, variant, flip, base }: Props) {
   const n = String(index + 1).padStart(2, "0");
   return (
     <article className={`pcard pcard--${variant}${flip ? " pcard--flip" : ""}`} data-cursor="view" data-card>
@@ -18,7 +18,7 @@ export function ProjectCard({ project: p, index, variant, flip }: Props) {
       </div>
       <div className="pcard__head">
         <h3 className="pcard__title">
-          <Link href={`/work/${p.slug}`} className="pcard__link">
+          <Link href={`${base}/work/${p.slug}`} className="pcard__link">
             {p.title}
           </Link>
         </h3>

@@ -98,7 +98,7 @@
   border-radius: 999px; background: var(--bg-2); border: 1px solid var(--line-strong);
   font-family: var(--font-mono-family), monospace; font-size: 12px;
 }
-.proto-switch__item { display: grid; place-items: center; width: 32px; height: 32px; border-radius: 999px; color: var(--text-1); }
+.proto-switch__item { display: grid; transition: color 200ms, background-color 200ms; place-items: center; width: 32px; height: 32px; border-radius: 999px; color: var(--text-1); }
 .proto-switch__item.is-current { background: var(--accent-0); color: var(--accent-ink); }
-.proto-switch__item.is-disabled { opacity: 0.45; }
+a.proto-switch__item:hover, a.proto-switch__item:focus-visible { color: var(--text-0); background: var(--line); }
 body:has(.proto-switch) .statusbar__inner { padding-left: 148px; }

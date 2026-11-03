@@ -8,7 +8,7 @@ const b = await chromium.launch();
 let total = 0;
 for (const [w, reduced] of [[390, false], [1440, false], [1440, true]]) {
   const p = await b.newPage({ viewport: { width: w, height: 900 }, reducedMotion: reduced ? "reduce" : "no-preference" });
-  await p.goto("http://localhost:3000" + path, { waitUntil: "networkidle" });
+  await p.goto((process.env.BASE_URL ?? "http://localhost:3000") + path, { waitUntil: "networkidle" });
   await p.addStyleTag({ content: ".cv-auto{content-visibility:visible!important}" });
   // scroll through so lazy/in-view states settle, then back to top
   for (let y = 0; y < (await p.evaluate(() => document.body.scrollHeight)); y += 700) {

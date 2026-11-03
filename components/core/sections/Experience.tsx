@@ -11,7 +11,7 @@ function shortHash(s: string) {
 }
 
 // §5.5: git log of independent projects on one branch, merging down to education.
-export function Experience() {
+export function Experience({ base }: { base: string }) {
   const commits = experience.filter((e) => e.kind === "project");
   const branch = experience.find((e) => e.kind === "branch");
   const edu = experience.find((e) => e.kind === "education");
@@ -38,7 +38,7 @@ export function Experience() {
                 </div>
                 <h3 className="commit__title">
                   {c.slug ? (
-                    <Link href={`/work/${c.slug}`} className="commit__link">
+                    <Link href={`${base}/work/${c.slug}`} className="commit__link">
                       {c.title} <span aria-hidden="true">→</span>
                     </Link>
                   ) : (

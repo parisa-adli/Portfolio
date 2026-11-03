@@ -2,11 +2,9 @@
 // one delegated pointer listener, one window key listener, transforms only.
 import { CODE_ALIAS } from "./layout";
 import { click } from "./sound";
-import { toast } from "../Toast";
+import { HEAVY, eggToast, typer } from "./typing";
 import { onFrame, richPointer } from "@/lib/pointer";
 
-const SECRETS = ["hire", "next", "react"];
-const HEAVY = new Set(["Space", "Enter", "Backspace"]);
 const MAX_TILT = 6;
 
 export function initKeyboard(kb: HTMLElement) {
@@ -14,7 +12,7 @@ export function initKeyboard(kb: HTMLElement) {
   const screen = kb.querySelector<HTMLElement>("[data-kb-screen]")!;
   const tip = kb.querySelector<HTMLElement>("[data-kb-tip]")!;
   const parallax = kb.querySelector<HTMLElement>(".kb__parallax")!;
-  let typed = "";
+  const typed = typer();
   let inView = true;
   let waving = false;
 
@@ -39,19 +37,15 @@ export function initKeyboard(kb: HTMLElement) {
   const hideTip = () => tip.classList.remove("is-on");
 
   function type(ch: string) {
-    typed = (typed + ch).slice(-24);
-    screen.textContent = `> ${typed.slice(-9)}_`;
-    const word = typed.toLowerCase();
-    if (!waving && SECRETS.some((s) => word.endsWith(s))) {
-      typed = "";
-      wave();
-    }
+    const { echo, hit } = typed(ch);
+    screen.textContent = `> ${echo}_`;
+    if (hit && !waving) wave();
   }
 
   function wave() {
     waving = true;
     kb.classList.add("is-wave");
-    toast("Let's build something →", { href: "#contact", text: "contact" });
+    eggToast();
     setTimeout(() => {
       kb.classList.remove("is-wave");
       waving = false;

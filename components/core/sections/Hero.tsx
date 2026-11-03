@@ -4,7 +4,7 @@ import { KeyboardIsland } from "../Keyboard/KeyboardIsland";
 import { Icon } from "../icons";
 
 // §5.1. The H1 is server-rendered, visible and never animated in: it is the LCP element.
-export function Hero() {
+export function Hero({ keyboard = <Keyboard /> }: { keyboard?: React.ReactNode }) {
   const [before, after] = profile.positioning.split("tested");
   return (
     <section id="top" className="hero container-x" aria-labelledby="hero-title">
@@ -39,7 +39,7 @@ export function Hero() {
         </div>
       </div>
       <div className="hero__kb">
-        <Keyboard />
+        {keyboard}
         <div className="hero__hint">
           <span className="label">try typing ⌨</span>
           <KeyboardIsland />

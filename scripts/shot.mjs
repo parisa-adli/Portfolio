@@ -29,7 +29,7 @@ for (const w of widths) {
   const file = `screenshots/${name}-${w}.png`;
   if (process.env.EL) await page.locator(process.env.EL).first().screenshot({ path: file });
   else await page.screenshot({ path: file, fullPage: full });
-  console.log(file, errors.length ? "ERRORS: " + errors.join(" | ") : "");
+  console.log(file, errors.length ? "ERRORS: " + errors.map((e) => e.split("\n")[0].slice(0, 140)).join(" | ") : "");
   await page.close();
 }
 await browser.close();

@@ -1,10 +1,10 @@
 import type { MetadataRoute } from "next";
 import { projects } from "@/content/projects";
-import { SITE_URL } from "@/lib/site";
+import { PROTOS, SITE_URL } from "@/lib/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  return [
-    { url: `${SITE_URL}/a`, priority: 1 },
-    ...projects.map((p) => ({ url: `${SITE_URL}/work/${p.slug}`, priority: 0.7 })),
-  ];
+  return PROTOS.flatMap((id) => [
+    { url: `${SITE_URL}/${id}`, priority: 1 },
+    ...projects.map((p) => ({ url: `${SITE_URL}/${id}/work/${p.slug}`, priority: 0.7 })),
+  ]);
 }

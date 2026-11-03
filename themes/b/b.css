@@ -1,0 +1,99 @@
+/* Prototype B — "Mechanical" skin. Structure lives in components/core; only B's look here. */
+
+/* Background: fine line grid (not A's dots) + warm spotlight + subtle noise */
+[data-theme="b"] .fx-grid,
+[data-theme="b"] .fx-spot__inner {
+  background-image:
+    linear-gradient(var(--dot-color) 1px, transparent 1px),
+    linear-gradient(90deg, var(--dot-color) 1px, transparent 1px);
+}
+[data-theme="b"]::before {
+  content: ""; position: fixed; inset: 0; z-index: 0; pointer-events: none; opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Keycap language: buttons are keycaps (squared radius, a solid bottom edge that collapses on press) */
+[data-theme="b"] .btn {
+  border-radius: 10px;
+  transition: transform 120ms var(--ease-out), box-shadow 120ms var(--ease-out), background-color 200ms, border-color 200ms, color 200ms;
+}
+[data-theme="b"] .btn--primary {
+  background: linear-gradient(180deg, #f6f1e6, var(--keycap)); color: #16130d;
+  box-shadow: inset 0 1px 0 #fff, 0 4px 0 var(--keycap-edge), 0 10px 24px -10px rgba(0, 0, 0, 0.8);
+}
+[data-theme="b"] .btn--primary:hover,
+[data-theme="b"] .btn--primary:focus-visible {
+  box-shadow: inset 0 1px 0 #fff, 0 4px 0 var(--accent-0), 0 10px 30px -8px rgba(245, 158, 11, 0.55);
+}
+[data-theme="b"] .btn--ghost {
+  background: linear-gradient(180deg, #1b1e24, #14171c); border-color: rgba(255, 255, 255, 0.1);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 4px 0 #0a0b0e;
+}
+[data-theme="b"] .btn:active { transform: translateY(3px); box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 0 var(--keycap-edge); }
+[data-theme="b"] .btn--ghost:active { box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 1px 0 #0a0b0e; }
+
+/* Section headers: medium IDE motifs (§6). The file path goes; the index becomes a small amber keycap. */
+[data-theme="b"] .file-tab > [aria-hidden],
+[data-theme="b"] .file-tab__name { display: none; }
+[data-theme="b"] .file-tab__idx {
+  display: inline-grid; place-items: center; min-width: 40px; height: 36px; padding: 0 10px; border-radius: 7px;
+  background: linear-gradient(180deg, #fbbf24, var(--accent-0)); color: var(--accent-ink); font-weight: 700;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), 0 3px 0 #a16207;
+}
+[data-theme="b"] .about__gutter { display: none; }
+[data-theme="b"] .about__bio { padding-left: 0; }
+
+/* Project cards: solid card with keycap bevel edges */
+[data-theme="b"] .pcard {
+  --card-glow-1: rgba(245, 158, 11, 0.95);
+  --card-glow-2: rgba(252, 211, 77, 0.4);
+  background: linear-gradient(180deg, #171a20, #111317 60%);
+  border-color: rgba(255, 255, 255, 0.07);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.09),
+    inset 1px 0 0 rgba(255, 255, 255, 0.03),
+    inset -1px 0 0 rgba(0, 0, 0, 0.35),
+    0 8px 0 -1px #0b0c0f,
+    0 8px 0 0 rgba(255, 255, 255, 0.05),
+    0 40px 70px -30px rgba(0, 0, 0, 0.85);
+}
+[data-theme="b"] .pcard .phones::before {
+  content: ""; position: absolute; inset: 20% 12% 0; z-index: 0; border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(245, 158, 11, 0.16), transparent);
+}
+[data-theme="b"] .chip--tech { border-radius: 5px; background: rgba(255, 255, 255, 0.03); box-shadow: 0 2px 0 rgba(0, 0, 0, 0.6); }
+[data-theme="b"] .pcard__features li::before { color: var(--accent-0); }
+
+/* Skills: tiles are keycaps; they press in on hover */
+[data-theme="b"] .tile__box {
+  border-radius: 12px; border-color: rgba(255, 255, 255, 0.07);
+  background: linear-gradient(180deg, #1b1e24, #13161a);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 5px 0 #0a0b0e;
+}
+[data-theme="b"] .tile:hover .tile__box { transform: translateY(3px); box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 2px 0 #0a0b0e; }
+[data-theme="b"] .editor,
+[data-theme="b"] .term { box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06), 0 6px 0 #0a0b0e; }
+
+/* Marquee: amber band with caution-tape edges */
+[data-theme="b"] .band--1 {
+  border-block: 10px solid transparent;
+  border-image: repeating-linear-gradient(-45deg, #120c02 0 12px, #f59e0b 12px 24px) 10;
+}
+[data-theme="b"] .band__item { font-family: var(--font-mono-family), monospace; letter-spacing: 0.02em; }
+
+[data-theme="b"] .statusbar { background: #0b0c0f; }
+
+/* ── B hero keyboard (WebGL). Same box ratio as the CSS keyboard, so the hero's reserved height applies. ── */
+.kb3d { position: relative; aspect-ratio: 19.5 / 8.4; }
+.kb3d::before {
+  content: ""; position: absolute; inset: 10% 8%; z-index: -1; border-radius: 50%; pointer-events: none;
+  background: radial-gradient(closest-side, rgba(99, 72, 230, 0.35), rgba(245, 158, 11, 0.08) 60%, transparent);
+}
+.kb3d__float { position: absolute; inset: 0; }
+.kb3d.is-alive .kb3d__float { animation: kb-float 6s ease-in-out infinite alternate; }
+/* Fades in (decorative): keeps the H1 the LCP element (�5.1) instead of this image. */
+.kb3d__poster { object-fit: contain; transition: opacity 500ms var(--ease-out); animation: kb-poster 600ms var(--ease-out) both; }
+@keyframes kb-poster { from { opacity: 0; } }
+.kb3d.is-ready .kb3d__poster { opacity: 0; }
+.kb3d canvas { display: block; opacity: 0; transition: opacity 500ms var(--ease-out); }
+.kb3d.is-ready canvas { opacity: 1; }

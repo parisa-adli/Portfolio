@@ -12,7 +12,7 @@ await p.addInitScript(() => {
   new PerformanceObserver((l) => l.getEntries().forEach((e) => e.interactionId && window.__ev.push(Math.round(e.duration))))
     .observe({ type: "event", durationThreshold: 16, buffered: true });
 });
-await p.goto("http://localhost:3000/a", { waitUntil: "networkidle" });
+await p.goto((process.env.BASE_URL ?? "http://localhost:3000") + (process.env.P ?? "/a"), { waitUntil: "networkidle" });
 if (process.env.STYLE) await p.addStyleTag({ content: process.env.STYLE });
 await p.waitForTimeout(4000);
 const measure = async (label, fn) => {
@@ -32,7 +32,7 @@ const clickAt = async (sel) => {
 };
 const res = [];
 res.push(await measure("physical key", () => p.keyboard.press("KeyQ")));
-res.push(await measure("click keycap", () => clickAt('.key[data-code="KeyW"]')));
+res.push(await measure("click keycap", () => clickAt('.key[data-code="KeyW"], .kb3d')));
 res.push(await measure("secret word wave", () => p.keyboard.type("hire")));
 res.push(await measure("sound toggle", () => clickAt(".sound-toggle")));
 await p.evaluate(() => document.querySelector("#skills").scrollIntoView());

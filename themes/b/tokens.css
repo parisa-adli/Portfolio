@@ -1,0 +1,30 @@
+/* Prototype B — "Mechanical": accents only (§3.1, §6). Warm amber + off-white keycaps. */
+[data-theme="b"] {
+  --accent-0: #f59e0b; /* amber */
+  --accent-1: #fcd34d; /* light amber */
+  --accent-ink: #1a1206;
+  --accent-soft: rgba(245, 158, 11, 0.12);
+  --grad: linear-gradient(90deg, #f59e0b, #fcd34d);
+  --keycap: #ece6d8; /* off-white keycap */
+  --keycap-edge: #b9ae96;
+}
+[data-theme="b"] {
+  --dot-color: rgba(255, 255, 255, 0.045); /* fine grid lines */
+  --dot-lit: rgba(251, 191, 36, 0.4);
+  --dot-cell: 40px;
+  --spot-color: rgba(245, 158, 11, 0.1);
+  --cursor-ring: rgba(237, 238, 240, 0.5);
+}
+[data-theme="b"] {
+  --band-1-bg: #f59e0b;
+  --band-1-fg: #120c02;
+  --band-2-bg: var(--bg-2);
+  --band-2-fg: var(--keycap);
+}
+[data-theme="b"] {
+  --syntax-key: #fcd34d;
+  --syntax-string: #ece6d8;
+  --orbit-color: rgba(245, 158, 11, 0.3);
+  --orbit-color-2: rgba(236, 230, 216, 0.15);
+}
+[data-theme="b"] { --danger: #fb7185; }

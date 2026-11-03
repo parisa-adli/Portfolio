@@ -1,35 +1,12 @@
-import type { Metadata } from "next";
 import { ThemeA } from "@/themes/a/ThemeA";
-import { profile } from "@/content/profile";
-import { SITE_URL } from "@/lib/site";
+import { PersonLd, protoMetadata } from "@/lib/protoMeta";
 
-const title = `${profile.name} — ${profile.headline}`;
-
-export const metadata: Metadata = {
-  title,
-  description: profile.positioning,
-  alternates: { canonical: "/a" },
-  openGraph: { type: "website", title, description: profile.positioning, url: "/a", siteName: profile.name },
-  twitter: { card: "summary_large_image", title, description: profile.positioning },
-};
-
-const personLd = {
-  "@context": "https://schema.org",
-  "@type": "Person",
-  name: profile.name,
-  jobTitle: profile.headline,
-  description: profile.positioning,
-  url: `${SITE_URL}/a`,
-  email: `mailto:${profile.email}`,
-  sameAs: profile.links.map((l) => l.href),
-  knowsAbout: ["React", "Next.js", "TypeScript", "Node.js", "Express", "MongoDB"],
-  alumniOf: profile.education.map((e) => ({ "@type": "CollegeOrUniversity", name: e.school })),
-};
+export const metadata = protoMetadata("a");
 
 export default function ALayout({ children }: { children: React.ReactNode }) {
   return (
     <ThemeA>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(personLd) }} />
+      <PersonLd id="a" />
       {children}
     </ThemeA>
   );

@@ -2,7 +2,7 @@
 import { chromium } from "@playwright/test";
 const b = await chromium.launch();
 const p = await b.newPage({ viewport: { width: 1440, height: 900 } });
-await p.goto("http://localhost:3000" + (process.argv[2] ?? "/a"), { waitUntil: "networkidle" });
+await p.goto((process.env.BASE_URL ?? "http://localhost:3000") + (process.argv[2] ?? "/a"), { waitUntil: "networkidle" });
 const seen = [];
 let noRing = 0;
 for (let i = 0; i < 120; i++) {

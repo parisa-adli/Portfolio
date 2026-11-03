@@ -6,7 +6,7 @@ import { CardFX } from "../CardFX";
 const GITHUB = "https://github.com/parisa-adli?tab=repositories";
 
 // §5.2: top 3 featured full-width (alternating), the rest as a 2-col compact grid.
-export function Projects() {
+export function Projects({ base }: { base: string }) {
   const featured = projects.filter((p) => p.featured);
   const rest = projects.filter((p) => !p.featured);
   return (
@@ -24,11 +24,11 @@ export function Projects() {
       />
       <div className="projects">
         {featured.map((p, i) => (
-          <ProjectCard key={p.slug} project={p} index={i} variant="featured" flip={i % 2 === 1} />
+          <ProjectCard key={p.slug} project={p} index={i} variant="featured" flip={i % 2 === 1} base={base} />
         ))}
         <div className="projects__grid">
           {rest.map((p, i) => (
-            <ProjectCard key={p.slug} project={p} index={featured.length + i} variant="compact" />
+            <ProjectCard key={p.slug} project={p} index={featured.length + i} variant="compact" base={base} />
           ))}
         </div>
       </div>
