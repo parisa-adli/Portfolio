@@ -1,0 +1,28 @@
+/* Prototype C — "Editorial": accents only (§3.1, §6). Lime on black. */
+[data-theme="c"] {
+  --accent-0: #c6f432; /* lime */
+  --accent-1: #c6f432;
+  --accent-ink: #0a0d02;
+  --accent-soft: rgba(198, 244, 50, 0.12);
+  --grad: linear-gradient(90deg, #c6f432, #c6f432);
+}
+[data-theme="c"] {
+  --dot-color: rgba(255, 255, 255, 0.025); /* very faint grid lines */
+  --dot-lit: rgba(255, 255, 255, 0.12);
+  --dot-cell: 64px;
+  --spot-color: rgba(255, 255, 255, 0.05); /* white spotlight */
+  --cursor-ring: rgba(237, 238, 240, 0.5);
+}
+[data-theme="c"] {
+  --band-1-bg: #c6f432;
+  --band-1-fg: #0a0d02;
+  --band-2-bg: #000;
+  --band-2-fg: var(--text-0);
+}
+[data-theme="c"] {
+  --syntax-key: #c6f432;
+  --syntax-string: var(--text-0);
+  --orbit-color: rgba(255, 255, 255, 0.12);
+  --orbit-color-2: rgba(198, 244, 50, 0.18);
+}
+[data-theme="c"] { --danger: #fb7185; }

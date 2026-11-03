@@ -28,7 +28,9 @@ export function CaseStudy({ project: p, index, next, base }: Props) {
 
         <header className="case__header">
           <div className="pcard__meta">
-            <span className="label pcard__index">PROJECT_{n}</span>
+            <span className="label pcard__index" data-n={n}>
+              PROJECT_{n}
+            </span>
             <span className="chip">{p.category}</span>
             <span className="chip chip--status">{p.status}</span>
           </div>

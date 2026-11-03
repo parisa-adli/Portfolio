@@ -12,7 +12,9 @@ export function ProjectCard({ project: p, index, variant, flip, base }: Props) {
   return (
     <article className={`pcard pcard--${variant}${flip ? " pcard--flip" : ""}`} data-cursor="view" data-card>
       <div className="pcard__meta">
-        <span className="label pcard__index">PROJECT_{n}</span>
+        <span className="label pcard__index" data-n={n}>
+          PROJECT_{n}
+        </span>
         <span className="chip">{p.category}</span>
         <span className={`chip chip--status chip--${p.status.replace(" ", "-")}`}>{STATUS[p.status]}</span>
       </div>
