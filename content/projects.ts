@@ -73,6 +73,8 @@ export const projects: Project[] = [
       { file: "users.jpg", caption: "users" },
       { file: "profile.jpg", caption: "profile" },
       { file: "products.jpg", caption: "products" },
+      { file: "suppliers.png", caption: "suppliers" },
+      { file: "categories.png", caption: "categories" },
     ],
   },
   {
@@ -106,6 +108,13 @@ export const projects: Project[] = [
       "Stock is validated on add-to-cart and payment, then decremented conditionally per quantity, with compensation if a step fails.",
     signals: { commits: 66, tests: "Vitest + Supertest (server)", ci: false },
     featured: true,
+    gallery: [
+      { file: "localhost_3000_.png", caption: "home page" },
+      { file: "products.png", caption: "products" },
+      { file: "cart.png", caption: "cart" },
+      { file: "coupons.png", caption: "coupons" },
+      { file: "admin-dashboard.png", caption: "admin dashboard" },
+    ],
   },
   {
     slug: "workbridge",
@@ -142,6 +151,14 @@ export const projects: Project[] = [
       "Feature-based client with role-guarded routes, backed by an Express API with per-role endpoints.",
     signals: { commits: 66, tests: "Vitest, Playwright E2E", ci: true },
     featured: true,
+    gallery: [
+      { file: "home-page.png", caption: "home page" },
+      { file: "home-page-darkmode.png", caption: "home page, dark mode" },
+      { file: "projects.png", caption: "projects" },
+      { file: "proposals.png", caption: "proposals" },
+      { file: "users.png", caption: "users" },
+      { file: "profile.png", caption: "profile" },
+    ],
   },
   {
     slug: "rblog",
@@ -174,6 +191,17 @@ export const projects: Project[] = [
       "Public pages are server-rendered with dynamic routes for SEO; the admin dashboard runs on React Query with shared hooks and paginated tables.",
     signals: { commits: 81, tests: null, ci: false },
     featured: false,
+    gallery: [
+      { file: "home-page.png", caption: "home page 01" },
+      { file: "home-page-01.png", caption: "home page 02" },
+      { file: "home-page-03.png", caption: "home page 03" },
+      { file: "home-page-darkmode.png", caption: "home page, dark mode" },
+      { file: "dashboard.png", caption: "dashboard" },
+      { file: "dashboard-darkmode.png", caption: "dashboard, dark mode" },
+      { file: "posts.png", caption: "posts" },
+      { file: "comments.png", caption: "comments" },
+      { file: "categories.png", caption: "categories" },
+    ],
   },
   {
     slug: "stays",
@@ -205,5 +233,11 @@ export const projects: Project[] = [
       "All search, filter and sort state lives in the URL, so any result page is a link.",
     signals: { commits: 35, tests: "Node test runner (unit)", ci: false },
     featured: false,
+    gallery: [
+      { file: "home-page.png", caption: "home page" },
+      { file: "home-page-darkmode.png", caption: "home page, dark mode" },
+      { file: "search.png", caption: "search" },
+      { file: "bookmarks.png", caption: "bookmarks" },
+    ],
   },
 ];
