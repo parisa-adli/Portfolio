@@ -16,13 +16,16 @@ export function PointerFX() {
     if (!richPointer()) return;
     const root = document.documentElement;
     root.classList.add("has-cursor");
+    // Grab the nodes once: on route change React nulls refs before this cleanup runs, and a late
+    // pointer event reading `ref.current` would throw (and used to kill the shared pointer loop).
+    const [sp, si, d, r, l] = [spot.current!, spotInner.current!, dot.current!, ring.current!, label.current!];
 
     const off = onFrame((p) => {
       // Outer follows the lerped pointer, inner moves back, so the lit dots stay on the base grid.
-      spot.current!.style.transform = `translate3d(${p.sx - SPOT / 2}px, ${p.sy - SPOT / 2}px, 0)`;
-      spotInner.current!.style.transform = `translate3d(${SPOT / 2 - p.sx}px, ${SPOT / 2 - p.sy}px, 0)`;
-      dot.current!.style.transform = `translate3d(${p.x}px, ${p.y}px, 0)`;
-      ring.current!.style.transform = `translate3d(${p.sx}px, ${p.sy}px, 0)`;
+      sp.style.transform = `translate3d(${p.sx - SPOT / 2}px, ${p.sy - SPOT / 2}px, 0)`;
+      si.style.transform = `translate3d(${SPOT / 2 - p.sx}px, ${SPOT / 2 - p.sy}px, 0)`;
+      d.style.transform = `translate3d(${p.x}px, ${p.y}px, 0)`;
+      r.style.transform = `translate3d(${p.sx}px, ${p.sy}px, 0)`;
     });
 
     let mode = "";
@@ -34,10 +37,10 @@ export function PointerFX() {
       const next = hit ? "label" : interactive ? "hover" : text ? "text" : "";
       if (next !== mode) {
         mode = next;
-        ring.current!.dataset.mode = mode;
-        dot.current!.dataset.mode = mode;
+        r.dataset.mode = mode;
+        d.dataset.mode = mode;
       }
-      label.current!.textContent = hit?.dataset.cursor ?? "";
+      l.textContent = hit?.dataset.cursor ?? "";
     };
     const onLeave = () => root.classList.add("cursor-out");
     const onEnter = () => root.classList.remove("cursor-out");

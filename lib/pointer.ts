@@ -9,11 +9,12 @@ let raf = 0;
 let listening = false;
 
 function tick() {
+  raf = 0; // reset first, so a throwing subscriber can't leave the loop stuck "running"
   pointer.sx += (pointer.x - pointer.sx) * 0.12;
   pointer.sy += (pointer.y - pointer.sy) * 0.12;
   subs.forEach((f) => f(pointer));
   const settled = Math.abs(pointer.x - pointer.sx) < 0.2 && Math.abs(pointer.y - pointer.sy) < 0.2;
-  raf = settled ? 0 : requestAnimationFrame(tick);
+  if (!settled) raf = requestAnimationFrame(tick);
 }
 
 function wake() {

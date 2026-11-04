@@ -26,9 +26,11 @@ export function Nav({ brand }: { brand: string }) {
     ro.observe(document.body);
     measure();
     let scrolled: boolean | null = null;
+    // Grab the nodes once: React nulls refs before this cleanup runs, and a late scroll would throw.
+    const [b, h] = [bar.current!, header.current!];
     const off = onScroll((y) => {
-      bar.current!.style.transform = `scaleX(${Math.min(1, y / max).toFixed(4)})`;
-      if ((y > 80) !== scrolled) header.current!.classList.toggle("is-scrolled", (scrolled = y > 80));
+      b.style.transform = `scaleX(${Math.min(1, y / max).toFixed(4)})`;
+      if ((y > 80) !== scrolled) h.classList.toggle("is-scrolled", (scrolled = y > 80));
     });
 
     const io = new IntersectionObserver(
