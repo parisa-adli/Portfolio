@@ -109,7 +109,7 @@ export const projects: Project[] = [
     signals: { commits: 66, tests: "Vitest + Supertest (server)", ci: false },
     featured: true,
     gallery: [
-      { file: "localhost_3000_.png", caption: "home page" },
+      { file: "home-page.png", caption: "home page" },
       { file: "products.png", caption: "products" },
       { file: "cart.png", caption: "cart" },
       { file: "coupons.png", caption: "coupons" },
